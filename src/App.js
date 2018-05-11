@@ -21,7 +21,18 @@ class App extends Component {
 
   getData(movie) {
     let api = new Api();
-    api.getData(movie).then(res => console.log(res));
+    api.getData(movie).then(res => {
+      if (res.data.results.length > 0) {
+        this.setState({
+          movies: res.data.results
+        });
+      } else {
+        this.setState({
+          movies: []
+        });
+      }
+    });
+    console.log(this.state.movies);
   }
 
   render() {
