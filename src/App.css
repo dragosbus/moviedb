@@ -9,3 +9,61 @@
   width: 5rem;
   height: 5rem;
 }
+
+#movie-search {
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+}
+
+#movie-search > input {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  height: 4rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 1.5rem rgba(0,0,0,0.25);
+  outline: none;
+  transition: box-shadow 0.55s ease-in;
+}
+
+#movie-search > input:focus {
+  box-shadow: 0 0 1rem rgba(8, 79, 160, 0.493);
+}
+
+#movie-search > button {
+  position: absolute;
+  top: 1.7rem;
+  right: 15%;
+  border: none;
+  background: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#movie-search > button > svg {
+  fill: rgb(18, 160, 61);
+}
+
+
+/* Media querys */
+
+@media (min-width: 66rem) {
+  #movie-search>input {
+    width: 66%;
+  }
+
+  #movie-search>button {
+    right: 20%;
+  }
+}
+
+@media (min-width: 66rem) {
+  #movie-search>input {
+    width: 45%;
+  }
+  #movie-search>button {
+    right: 30%;
+  }
+}
