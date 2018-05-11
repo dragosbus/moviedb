@@ -5,7 +5,7 @@ import {Movie} from './MovieList';
 export class Movies extends Component {
     render() {
         return (
-            <ul>
+            <ul className="movie-list">
                 {this.props.movies.map((movie, i) => <Movie key={i} cover={movie.poster_path}/>)} 
             </ul>
         );

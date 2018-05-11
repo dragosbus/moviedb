@@ -49,6 +49,24 @@
   fill: rgb(255, 255, 255);
 }
 
+.movie-list {
+  list-style-type: none;
+  padding: 2rem;
+}
+
+.movie {
+  width : 85%;
+  margin: 1.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie > img {
+  width: 30%;
+}
+
+
 
 /* Media querys */
 
