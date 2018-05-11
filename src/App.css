@@ -11,17 +11,18 @@
 }
 
 #movie-search {
-  width: 100%;
+  width: 80%;
   padding: 1rem;
   position: relative;
+  margin: 0 auto;
 }
 
 #movie-search > input {
   display: block;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   height: 4rem;
-  border-radius: 5px;
+  border-radius: 0.5rem 0 0 0.5rem;
   border: none;
   box-shadow: 0 0 1.5rem rgba(0,0,0,0.25);
   outline: none;
@@ -34,16 +35,18 @@
 
 #movie-search > button {
   position: absolute;
-  top: 1.7rem;
-  right: 15%;
+  top: 0.95rem;
+  right: 0;
   border: none;
-  background: none;
+  background: rgb(38, 108, 189);
   font-size: 2rem;
   cursor: pointer;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 #movie-search > button > svg {
-  fill: rgb(18, 160, 61);
+  fill: rgb(255, 255, 255);
 }
 
 
@@ -55,7 +58,7 @@
   }
 
   #movie-search>button {
-    right: 20%;
+    right: 5%;
   }
 }
 
@@ -64,6 +67,6 @@
     width: 45%;
   }
   #movie-search>button {
-    right: 30%;
+    right: 25%;
   }
 }
