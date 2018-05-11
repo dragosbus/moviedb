@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import {Api} from './components/Api';
 import { Header } from './components/Header';
 import { Form } from './components/Form';
+import { Movies } from './components/Movies';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: []
+      movies: [],
+      trailers: []
     }
     this.formSubmit = this.formSubmit.bind(this);
     this.getData = this.getData.bind(this);
+    this.getTrailers = this.getTrailers.bind(this);
   }
 
   formSubmit(e) {
@@ -33,13 +36,30 @@ class App extends Component {
       }
     });
     console.log(this.state.movies);
+    this.getTrailers();
+  }
+
+  getTrailers() {
+    let api = new Api();
+    let data = this.state.movies;
+    let trailers = [];
+    data.forEach(movie => {
+      api.getTrailer(movie.id).then(res => {
+        trailers.push(res.trailers);
+      });
+    });
+    this.setState({
+      trailers: trailers
+    })
+    console.log(this.state.trailers)
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <Form formSubmit={this.formSubmit}/>
+        <Form formSubmit={this.formSubmit} />
+        <Movies movies={this.state.movies}/>
       </div>
     );
   }
