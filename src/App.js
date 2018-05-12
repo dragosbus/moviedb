@@ -5,6 +5,10 @@ import { Form } from './components/Form';
 import { Movies } from './components/Movies';
 import './App.css';
 
+const data = {
+
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,8 +39,6 @@ class App extends Component {
         });
       }
     });
-    console.log(this.state.movies);
-    this.getTrailers();
   }
 
   getTrailers() {
@@ -50,8 +52,7 @@ class App extends Component {
     });
     this.setState({
       trailers: trailers
-    })
-    console.log(this.state.trailers)
+    });
   }
 
   render() {
