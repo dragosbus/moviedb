@@ -13,7 +13,7 @@ export const Movie = props => {
                     <h3 className="title">{props.title}</h3>
                     <h4 className="release">{props.date}</h4>
                 </div>
-                <p className="overview">{props.overview.slice(0,60)}...</p>
+                <p className="overview">{props.overview.slice(0,120)}...</p>
             </div>
         </li>
     );  
