@@ -69,7 +69,32 @@
   width: 30%;
 }
 
+.rating {
+  background: rgb(22, 19, 31);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+}
 
+.score {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+  border: 3px solid rgb(61, 199, 61);
+  border-radius: 50%;
+  width: 3.4rem;
+  height: 3.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Media querys */
 
