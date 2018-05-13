@@ -31,7 +31,7 @@ class App extends Component {
     api.getData(movie).then(res => {
       if (res.data.results.length > 0) {
         this.setState({
-          movies: res.data.results
+          movies: res.data.results.filter(movie => movie.poster_path && movie.original_title)
         });
       } else {
         this.setState({
