@@ -39,6 +39,7 @@ class App extends Component {
         });
       }
     });
+    console.log(this.state.movies);
   }
 
   getTrailers() {
