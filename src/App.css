@@ -60,6 +60,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation-name: fade-in;
+  animation-duration: 0.55s;
+  animation-timing-function: ease-in;
 }
 
 .movie > img {
@@ -86,5 +89,18 @@
   }
   #movie-search>button {
     right: 25%;
+  }
+}
+
+/* ANIMAIONS*/
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  100%{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
