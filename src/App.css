@@ -69,6 +69,22 @@
   width: 30%;
 }
 
+.infos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 2rem;
+}
+
+.main-infos {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .rating {
   background: rgb(22, 19, 31);
   width: 4rem;
@@ -94,6 +110,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.title {
+  text-align: center;
+  margin-left: auto;
+}
+
+.release {
+  width: 100%;
+  text-align: right;
+}
+
+.overview {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  line-height: 1.25;
+  font-size: 1.6rem;
 }
 
 /* Media querys */
