@@ -5,9 +5,6 @@ import { Form } from './components/Form';
 import { Movies } from './components/Movies';
 import './App.css';
 
-const data = {
-
-};
 
 class App extends Component {
   constructor(props) {
