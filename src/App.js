@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       movies: [],
-      trailers: [],
+      trailer: '',
       movieDetailOn: false
     }
     this.formSubmit = this.formSubmit.bind(this);
@@ -52,10 +52,9 @@ class App extends Component {
 
   showDetails(index) {
     this.setState({
-      movieDetailOn: !this.state.movieDetailOn
+      movieDetailOn: !this.state.movieDetailOn,
+      trailer: this.state.movies[index].trailer
     });
-    
-    console.log(this.state.movies[index].trailer);
   }
 
   render() {
@@ -64,7 +63,7 @@ class App extends Component {
         <Header />
         <Form formSubmit={this.formSubmit} />
         <Movies movies={this.state.movies} showDetails={this.showDetails}/>
-        <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${3}` : ''}/>
+        <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1` : ''}/>
       </div>
     );
   }
