@@ -129,6 +129,7 @@
   width: 60%;
   margin-left: 1rem;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .release {
@@ -145,6 +146,24 @@
   line-height: 1.25;
   font-size: 1.3rem;
   margin-top: 0;
+}
+
+.movie-detail,
+.movie-detail-on {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  right: 0;
+  width: 90%;
+  margin: 0 auto;
+  height: 200px;
+  background: rgb(17, 15, 15);
+  border-radius: 5px;
+  display: none;
+}
+
+.movie-detail-on {
+  display: block;
 }
 
 /* Media querys */

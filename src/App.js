@@ -3,6 +3,7 @@ import {Api} from './components/Api';
 import { Header } from './components/Header';
 import { Form } from './components/Form';
 import { Movies } from './components/Movies';
+import {MovieDetail} from './components/MovieDetail';
 import './App.css';
 
 
@@ -11,11 +12,12 @@ class App extends Component {
     super(props);
     this.state = {
       movies: [],
-      trailers: []
+      trailers: [],
+      movieDetailOn: false
     }
     this.formSubmit = this.formSubmit.bind(this);
     this.getData = this.getData.bind(this);
-    this.getTrailers = this.getTrailers.bind(this);
+    this.showDetails = this.showDetails.bind(this);
   }
 
   formSubmit(e) {
@@ -27,30 +29,33 @@ class App extends Component {
     let api = new Api();
     api.getData(movie).then(res => {
       if (res.data.results.length > 0) {
-        this.setState({
-          movies: res.data.results.filter(movie => movie.poster_path && movie.original_title)
-        });
+        let data = res.data.results;
+        data.forEach(movie=>{
+          api.getTrailer(movie.id).then(res => {
+            if(res.trailers.results.length) {
+              movie.trailer = res.trailers.results[0].key
+              this.setState(prevState=>{
+                return {
+                  movies: prevState.movies.concat(movie)
+                }
+              });
+            }       
+          });
+        });//end fetching trailers
       } else {
         this.setState({
           movies: []
         });
       }
-    });
-    console.log(this.state.movies);
+    });//end fetching movies
   }
 
-  getTrailers() {
-    let api = new Api();
-    let data = this.state.movies;
-    let trailers = [];
-    data.forEach(movie => {
-      api.getTrailer(movie.id).then(res => {
-        trailers.push(res.trailers);
-      });
-    });
+  showDetails(index) {
     this.setState({
-      trailers: trailers
+      movieDetailOn: !this.state.movieDetailOn
     });
+    
+    console.log(this.state.movies[index].trailer);
   }
 
   render() {
@@ -58,7 +63,8 @@ class App extends Component {
       <div className="App">
         <Header />
         <Form formSubmit={this.formSubmit} />
-        <Movies movies={this.state.movies}/>
+        <Movies movies={this.state.movies} showDetails={this.showDetails}/>
+        <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${3}` : ''}/>
       </div>
     );
   }
