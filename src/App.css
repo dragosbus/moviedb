@@ -166,10 +166,33 @@
   display: block;
 }
 
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 35px;
+  height: 0;
+  overflow: hidden;
+  margin-top: -13%;
+}
+
 .movie-detail-on iframe {
-  width: 100%;
-  height: 400px;
+  position: absolute;
+        top:22px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+}
+
+.close-modal {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 10000;
+  cursor: pointer;
   border: none;
+  background: none;
+  font-size: 29px;
+  color: #fff;
 }
 
 /* Media querys */

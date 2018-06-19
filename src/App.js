@@ -18,6 +18,7 @@ class App extends Component {
     this.formSubmit = this.formSubmit.bind(this);
     this.getData = this.getData.bind(this);
     this.showDetails = this.showDetails.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   formSubmit(e) {
@@ -57,13 +58,19 @@ class App extends Component {
     });
   }
 
+  closeModal() {
+    this.setState({
+      movieDetailOn: !this.state.movieDetailOn
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <Form formSubmit={this.formSubmit} />
         <Movies movies={this.state.movies} showDetails={this.showDetails}/>
-        <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1` : ''}/>
+        <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1&controls=0&loop=1&showinfo=0` : ''} closeModal={this.closeModal}/>
       </div>
     );
   }
