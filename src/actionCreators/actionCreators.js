@@ -18,7 +18,9 @@ export const getTrailer = (trailer) => ({
 
 export const addApiMiddleware = term => dispatch => {
     let api = new Api();
-    api.getData(term).then(res=>dispatch(addApiData(res.data.results)))
+    api.getData(term)
+        .then(res=>dispatch(addApiData(res.data.results)))
+        .catch(err=>console.log(err));
 };
 
 export const getTrailerMiddleware = movieId => dispatch => {
@@ -27,5 +29,5 @@ export const getTrailerMiddleware = movieId => dispatch => {
         .then(res=> {
             let trailer = res.trailers.results[0].key;
             dispatch(getTrailer(trailer));
-        })
+        }).catch(err=>console.log(err))
 }
