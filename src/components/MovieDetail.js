@@ -8,7 +8,7 @@ export const MovieDetail = props =>{
                 <h2>{props.title}</h2>
                 <div className="video-container">
                 <button className="close-modal" onClick={props.closeModal}>X</button>
-                    <iframe src={props.trailer} allow="autoplay; encrypted-media"  webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" modestbranding="1"></iframe>
+                    <iframe src={props.trailer} allow="autoplay; encrypted-media"  webkitallowfullscreen='true' mozallowfullscreen='true' allowFullScreen frameBorder="0" modestbranding="1"></iframe>
                 </div>
             </div>
         </div>

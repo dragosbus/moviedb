@@ -6,6 +6,10 @@ import { Movies } from './components/Movies';
 import {MovieDetail} from './components/MovieDetail';
 import './App.css';
 
+import {connect} from 'react-redux';
+
+import * as Actions from './actionCreators/actionCreators';
+
 
 class App extends Component {
   constructor(props) {
@@ -15,15 +19,9 @@ class App extends Component {
       trailer: '',
       movieDetailOn: false
     }
-    this.formSubmit = this.formSubmit.bind(this);
     this.getData = this.getData.bind(this);
     this.showDetails = this.showDetails.bind(this);
     this.closeModal = this.closeModal.bind(this);
-  }
-
-  formSubmit(e) {
-    e.preventDefault();
-    this.getData(e.target.elements[0].value);
   }
 
   getData(movie) {
@@ -65,10 +63,12 @@ class App extends Component {
   }
 
   render() {
+    let {setSearchTerm, searchTerm} = this.props;
+
     return (
       <div className="App">
         <Header />
-        <Form formSubmit={this.formSubmit} />
+        <Form setSearchTerm={setSearchTerm} getData={this.getData} searchTerm={searchTerm}/>
         <Movies movies={this.state.movies} showDetails={this.showDetails}/>
         <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1&controls=0&loop=1&showinfo=0` : ''} closeModal={this.closeModal}/>
       </div>
@@ -76,4 +76,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  searchTerm: state.searchTerm
+});
+
+const mapDispatchToProps = dispatch => ({
+  setSearchTerm(value) {
+    dispatch(Actions.setSearchTerm(value));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
