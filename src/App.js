@@ -68,9 +68,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Form setSearchTerm={setSearchTerm} getData={this.getData} searchTerm={searchTerm}/>
-        <Movies movies={this.state.movies} showDetails={this.showDetails}/>
-        <MovieDetail movieDetailOn={this.state.movieDetailOn} trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1&controls=0&loop=1&showinfo=0` : ''} closeModal={this.closeModal}/>
+        <Form 
+          setSearchTerm={setSearchTerm} 
+          getData={this.getData} 
+          searchTerm={searchTerm}
+        />
+        <Movies 
+          movies={this.state.movies} 
+          showDetails={this.showDetails}
+        />
+        <MovieDetail 
+          movieDetailOn={this.state.movieDetailOn} 
+          trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1&controls=0&loop=1&showinfo=0` : ''} 
+          closeModal={this.closeModal}
+        />
       </div>
     );
   }
