@@ -14,10 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trailer: '',
       movieDetailOn: false
     };
-    this.getData = this.getData.bind(this);
     this.showDetails = this.showDetails.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -48,9 +46,9 @@ class App extends Component {
   }
 
   showDetails(index) {
+    this.props.getTrailer(this.props.movies[index].id)
     this.setState({
-      movieDetailOn: !this.state.movieDetailOn,
-      trailer: this.state.movies[index].trailer
+      movieDetailOn: !this.state.movieDetailOn
     });
   }
 
@@ -61,18 +59,19 @@ class App extends Component {
   }
 
   render() {
-    let { setSearchTerm, getApiData, searchTerm, movies } = this.props;
+    let { setSearchTerm, getApiData, searchTerm, movies, trailer } = this.props;
     return (
       <div className="App">
         <Header />
         <Form setSearchTerm={setSearchTerm} getData={getApiData} searchTerm={searchTerm} />
-        <Movies 
-          movies={movies} 
-          showDetails={this.showDetails}
-        />
-        <MovieDetail 
-          movieDetailOn={this.state.movieDetailOn} 
-          trailer={this.state.movieDetailOn ? `https://www.youtube.com/embed/${this.state.trailer}?autoplay=1&controls=0&loop=1&showinfo=0` : ''} 
+        <Movies movies={movies} showDetails={this.showDetails} />
+        <MovieDetail
+          movieDetailOn={this.state.movieDetailOn}
+          trailer={
+            this.state.movieDetailOn
+              ? `https://www.youtube.com/embed/${trailer}?autoplay=1&controls=0&loop=1&showinfo=0`
+              : ''
+          }
           closeModal={this.closeModal}
         />
       </div>
@@ -82,7 +81,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   searchTerm: state.searchTerm,
-  movies: state.data
+  movies: state.data,
+  trailer: state.trailer
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -91,6 +91,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getApiData(term) {
     dispatch(Actions.addApiMiddleware(term));
+  },
+  getTrailer(movieId) {
+    dispatch(Actions.getTrailerMiddleware(movieId));
   }
 });
 
