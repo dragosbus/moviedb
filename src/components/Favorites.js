@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Movie } from './MovieList';
+import {connect} from 'react-redux';
 
 class Favorites extends Component {
   render() {
     return (
       <div className="favorites-movies">
         <ul className="favorites-list">
-          {this.props.favorites.map((movie, i) => (
+          {this.props.favoritesMovies.map((movie, i) => (
             <Movie
               key={i}
               cover={movie.poster_path}
@@ -23,4 +24,8 @@ class Favorites extends Component {
   }
 }
 
-export default Favorites;
+const mapStateToProps = state => ({
+    favoritesMovies: state.favoritesMovies
+});
+
+export default connect(mapStateToProps)(Favorites);

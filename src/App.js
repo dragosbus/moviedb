@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from './components/Header';
+import {Link} from 'react-router-dom';
 import { Form } from './components/Form';
 import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
@@ -37,6 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <Form setSearchTerm={setSearchTerm} getData={getApiData} searchTerm={searchTerm} />
+        <Link to="/favorites">Favorites</Link>
         <Movies movies={movies} showDetails={this.showDetails} />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}
