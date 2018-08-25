@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import * as Actions from './actionCreators/actionCreators';
 import App from './App';
 import Favorites from './components/Favorites';
+import {Header} from './components/Header';
 import store from './store';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
@@ -16,6 +17,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
+        <Header />
         <Switch>
           <Route exact path="/" component={App} />
           <Route path='/favorites' component={Favorites}/>

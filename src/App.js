@@ -36,7 +36,6 @@ class App extends Component {
     let { setSearchTerm, getApiData, searchTerm, movies, trailer } = this.props;
     return (
       <div className="App">
-        <Header />
         <Form setSearchTerm={setSearchTerm} getData={getApiData} searchTerm={searchTerm} />
         <Movies movies={movies} showDetails={this.showDetails} />
         <MovieDetail

@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actionTypes/actionTypes';
 
-const apiDataReducer = (state=[], action) => {
+const favoriteMoviesReducer = (state=[], action) => {
     switch(action.type) {
         case ActionTypes.ADD_TO_FAVORITE:
             return [...state, action.payload];
@@ -9,4 +9,4 @@ const apiDataReducer = (state=[], action) => {
     }
 };
 
-export default apiDataReducer;
+export default favoriteMoviesReducer;
