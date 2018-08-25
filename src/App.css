@@ -206,6 +206,11 @@
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+  transition: color 0.45s ease-in;
+}
+
+.favorite-true {
+  color: rgb(255, 191, 15);
 }
 
 /* Media querys */

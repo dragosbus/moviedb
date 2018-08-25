@@ -13,6 +13,7 @@ export class Movies extends Component {
             rating={movie.vote_average}
             date={movie.release_date}
             overview={movie.overview}
+            favorite={movie.favorite}
             showDetails={() => this.props.showDetails(i)}
             addToFavorite={() => this.props.addToFavorite(movie)}
           />

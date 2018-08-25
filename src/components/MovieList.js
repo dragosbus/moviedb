@@ -10,10 +10,12 @@ export const Movie = props => {
     backgroundImage: 'linear-gradient(180deg, rgba(2,2,2,0.55) 65%, rgba(255,255,255,0.45)), url(' + bgImage + ')'
   };
 
+  let classNameFavBtn = props.favorite ? 'favorite favorite-true' : 'favorite';
+
   return (
     <li className="movie">
       <div className="img" style={stylesBg} />
-      <FaStar className="favorite" onClick={props.addToFavorite} />
+      <FaStar className={classNameFavBtn} onClick={props.addToFavorite} />
       <div className="infos">
         <div className="main-infos">
           <div className="rating">

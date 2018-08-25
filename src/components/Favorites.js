@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 class Favorites extends Component {
   render() {
     let favoritesMovies = this.props.movies.filter(movie=>movie.favorite);
+
     return (
       <div className="favorites-movies">
         <ul className="favorites-list">
@@ -16,7 +17,7 @@ class Favorites extends Component {
               rating={movie.vote_average}
               date={movie.release_date}
               overview={movie.overview}
-              showDetails={() => this.props.showDetails(i)}
+              favorite={movie.favorite}
             />
           ))}
         </ul>
