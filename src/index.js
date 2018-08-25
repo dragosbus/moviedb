@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import * as Actions from './actionCreators/actionCreators';
+import store from './store';
 import App from './App';
 import Favorites from './components/Favorites';
 import {Header} from './components/Header';
-import store from './store';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 

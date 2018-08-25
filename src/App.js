@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Form } from './components/Form';
 import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   showDetails(index) {
-    this.props.getTrailer(this.props.movies[index].id)
+    this.props.getTrailer(this.props.movies[index].id);
     this.setState({
       movieDetailOn: !this.state.movieDetailOn
     });
@@ -33,12 +33,16 @@ class App extends Component {
   }
 
   render() {
-    let { setSearchTerm, getApiData, searchTerm, movies, trailer } = this.props;
+    let { setSearchTerm, getApiData, searchTerm, movies, trailer, addToFavorite } = this.props;
     return (
       <div className="App">
         <Form setSearchTerm={setSearchTerm} getData={getApiData} searchTerm={searchTerm} />
         <Link to="/favorites">Favorites</Link>
-        <Movies movies={movies} showDetails={this.showDetails} />
+        <Movies 
+          movies={movies} 
+          showDetails={this.showDetails} 
+          addToFavorite={addToFavorite} 
+        />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}
           trailer={
@@ -68,6 +72,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getTrailer(movieId) {
     dispatch(Actions.getTrailerMiddleware(movieId));
+  },
+  addToFavorite(movie) {
+    dispatch(Actions.addToFavorite(movie));
   }
 });
 

@@ -13,7 +13,7 @@ export const Movie = props => {
   return (
     <li className="movie">
       <div className="img" style={stylesBg} />
-      <FaStar className="favorite" />
+      <FaStar className="favorite" onClick={props.addToFavorite}/>
       <div className="infos">
         <div className="main-infos">
           <div className="rating">
