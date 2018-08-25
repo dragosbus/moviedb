@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FaSearch from 'react-icons/lib/fa/search';
+import {FaSearch} from 'react-icons/fa';
 
 export class Form extends Component {
   submitForm(e) {

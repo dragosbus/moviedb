@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Api } from './components/Api';
 import { Header } from './components/Header';
 import { Form } from './components/Form';
 import { Movies } from './components/Movies';
