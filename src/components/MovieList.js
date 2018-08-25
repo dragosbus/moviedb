@@ -7,13 +7,13 @@ export const Movie = props => {
 
   let bgImage = `https://image.tmdb.org/t/p/w500${props.cover}`;
   let stylesBg = {
-      backgroundImage: 'linear-gradient(180deg, rgba(2,2,2,0.55) 65%, rgba(255,255,255,0.45)), url(' + bgImage + ')',
-  }
+    backgroundImage: 'linear-gradient(180deg, rgba(2,2,2,0.55) 65%, rgba(255,255,255,0.45)), url(' + bgImage + ')'
+  };
 
   return (
     <li className="movie">
       <div className="img" style={stylesBg} />
-      <FaStar className="favorite" onClick={props.addToFavorite}/>
+      <FaStar className="favorite" onClick={props.addToFavorite} />
       <div className="infos">
         <div className="main-infos">
           <div className="rating">
