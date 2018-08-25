@@ -20,31 +20,6 @@ class App extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  getData(movie) {
-    let api = new Api();
-    api.getData(movie).then(res => {
-      if (res.data.results.length > 0) {
-        let data = res.data.results;
-        data.forEach(movie => {
-          api.getTrailer(movie.id).then(res => {
-            if (res.trailers.results.length) {
-              movie.trailer = res.trailers.results[0].key;
-              this.setState(prevState => {
-                return {
-                  movies: prevState.movies.concat(movie)
-                };
-              });
-            }
-          });
-        }); //end fetching trailers
-      } else {
-        this.setState({
-          movies: []
-        });
-      }
-    }); //end fetching movies
-  }
-
   showDetails(index) {
     this.props.getTrailer(this.props.movies[index].id)
     this.setState({
