@@ -5,11 +5,20 @@
   align-items: center;
   flex-wrap: wrap;
   height: 30rem;
-  overflow: scroll;
   padding: 2rem;
 }
 
+.trending h3 {
+  font-size: 1.75rem;
+}
+
+.trending a {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
 .trending ul {
+  overflow: scroll;
   width: 100%;
   list-style: none;
   height: 20rem;
@@ -23,8 +32,14 @@
 .trending ul li {
   position: absolute;
   width: 10rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0.5rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
   border-radius: 1.5rem;
+  transition: transform 0.35s ease-in;
+  cursor: pointer;
+}
+
+.trending ul li:hover {
+  transform: scale(1.25);
 }
 
 .trending ul li img {
