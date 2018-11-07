@@ -1,8 +1,12 @@
 .main-header {
   width: 100%;
-  background: rgb(33, 30, 58);
+  background: rgba(7, 7, 7, 0.89);
   padding: 1rem;
   box-shadow: 0 0 20px rgba(33, 30, 58, 0.35);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .main-header img {
@@ -14,38 +18,39 @@
   width: 80%;
   padding: 1rem;
   position: relative;
-  margin: 0 auto;
+  margin: 0;
+  margin-left: auto;
 }
 
 #movie-search > input {
   display: block;
   width: 100%;
   margin: 0 auto;
+  padding: 1rem 2.5rem;
   height: 4rem;
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 2rem;
   border: none;
-  box-shadow: 0 0 1.5rem rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.274);
   outline: none;
   transition: box-shadow 0.55s ease-in;
-}
-
-#movie-search > input:focus {
-  box-shadow: 0 0 1rem rgba(8, 79, 160, 0.493);
+  background: transparent;
+  color: #fff;
+  font-size: 1.75rem;
+  letter-spacing: 1.2px;
 }
 
 #movie-search > button {
   position: absolute;
-  top: 0.95rem;
-  right: 0;
+  top: 1.25rem;
+  right: 1.5rem;
   border: none;
-  background: rgb(38, 108, 189);
   font-size: 2rem;
   cursor: pointer;
   padding: 0.7rem 1.5rem;
-  border-radius: 0 0.5rem 0.5rem 0;
+  background: none;
 }
 
-#movie-search > button > svg {
+#movie-search > button > svg{
   fill: rgb(255, 255, 255);
 }
 
@@ -216,12 +221,8 @@
 /* Media querys */
 
 @media (min-width: 760px) {
-  #movie-search>input {
+  #movie-search {
     width: 66%;
-  }
-
-  #movie-search>button {
-    right: 5%;
   }
 
   .movie {
@@ -230,12 +231,10 @@
 }
 
 @media (min-width: 1100px) {
-  #movie-search>input {
+  #movie-search {
     width: 45%;
   }
-  #movie-search>button {
-    right: 25%;
-  }
+
   .movie {
     width: 30%;
   }

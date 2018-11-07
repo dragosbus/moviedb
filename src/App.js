@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form } from './components/Form';
 import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
 import './App.css';
@@ -36,7 +35,6 @@ class App extends Component {
     let { setSearchTerm, getApiData, searchTerm, movies, trailer, addToFavorite } = this.props;
     return (
       <div className="App">
-        <Form setSearchTerm={setSearchTerm} getData={getApiData} searchTerm={searchTerm} />
         <Link to="/favorites">Favorites</Link>
         <Movies 
           movies={movies} 
