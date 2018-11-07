@@ -23,6 +23,23 @@ export const addToFavorite = movie => ({
     payload: movie
 });
 
+const getWeekTrending = data => ({
+    type: ActionTypes.GET_WEEK_TRENDING,
+    payload: data
+});
+
+export const fetchWeekTrending = () => dispatch => {
+    let api = new Api();
+    api.fetchWeekTrending()
+        .then(res => {
+            console.log(res);
+            dispatch(getWeekTrending(res.results));
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 export const addApiMiddleware = term => dispatch => {
     let api = new Api();
     api.getData(term)

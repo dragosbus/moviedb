@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
+import WeekTrending from './components/Trending/WeekTrending';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -16,6 +17,10 @@ class App extends Component {
     };
     this.showDetails = this.showDetails.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getWeekTrending();
   }
 
   showDetails(index) {
@@ -36,6 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <Link to="/favorites">Favorites</Link>
+        <WeekTrending/>
         <Movies 
           movies={movies} 
           showDetails={this.showDetails} 
@@ -58,6 +64,7 @@ class App extends Component {
 const mapStateToProps = state => ({
   searchTerm: state.searchTerm,
   movies: state.data,
+  weekTrending: state.weekTrending,
   trailer: state.trailer
 });
 
@@ -73,6 +80,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addToFavorite(movie) {
     dispatch(Actions.addToFavorite(movie));
+  },
+  getWeekTrending() {
+    dispatch(Actions.fetchWeekTrending())
   }
 });
 
