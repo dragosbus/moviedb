@@ -18,15 +18,17 @@
 }
 
 .trending ul {
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   width: 100%;
   list-style: none;
-  height: 20rem;
+  height: 25rem;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  background: transparent;
 }
 
 .trending ul li {
@@ -34,16 +36,23 @@
   width: 10rem;
   box-shadow: 0.5rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
   border-radius: 1.5rem;
-  transition: transform 0.35s ease-in;
+  transition: all 0.35s ease-in;
   cursor: pointer;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .trending ul li:hover {
-  transform: scale(1.25);
+  transform: scale(1.35);
+  box-shadow: none;
 }
+
+
 
 .trending ul li img {
   max-width: 100%;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
 }
 
