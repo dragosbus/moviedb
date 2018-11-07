@@ -5,7 +5,7 @@ import { FaSearch } from 'react-icons/fa';
 export default class Form extends Component {
   state = {
     query: '',
-    inputQueryShowed: true
+    inputQueryShowed: false
   };
 
   onChangeQuery = e => {
@@ -18,8 +18,12 @@ export default class Form extends Component {
 
   submitForm = e => {
     e.preventDefault();
-    this.props.setSearchTerm(this.state.query);
-    this.props.getData(this.state.query);
+    if (this.state.inputQueryShowed) {
+      this.props.setSearchTerm(this.state.query);
+      this.props.getData(this.state.query);
+    } else {
+      this.toggleInput();
+    }
   };
 
   render() {

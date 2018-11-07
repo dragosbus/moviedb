@@ -17,6 +17,7 @@
 #movie-search {
   width: 80%;
   padding: 1rem;
+  height: 6rem;
   position: relative;
   margin: 0;
   margin-left: auto;
@@ -25,7 +26,8 @@
 #movie-search > input {
   display: block;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
+  margin-left: auto;
   padding: 1rem 2.5rem;
   height: 4rem;
   border-radius: 2rem;
@@ -35,8 +37,9 @@
   transition: box-shadow 0.55s ease-in;
   background: transparent;
   color: #fff;
-  font-size: 1.75rem;
+  font-size: 1.55rem;
   letter-spacing: 1.2px;
+  animation: input-query 0.65s ease-out;
 }
 
 #movie-search > button {
@@ -48,6 +51,7 @@
   cursor: pointer;
   padding: 0.7rem 1.5rem;
   background: none;
+  outline: none;
 }
 
 #movie-search > button > svg{
@@ -250,5 +254,14 @@
   100%{
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes input-query {
+  0% {
+    width: 0;
+  }
+  100%{
+    width: 100%;
   }
 }
