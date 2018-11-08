@@ -13,7 +13,7 @@ class WeekTrending extends React.Component {
         <h3>Week Trending</h3>
         <Link to="/week-trending">More</Link>
         <ul>
-          {this.props.weekTrending.map((movie, i) => {
+          {this.props.weekTrending.slice(0,10).map((movie, i) => {
             return (
               <li style={{left: `${i * 120}px`}}>
                 <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} />

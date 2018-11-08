@@ -5,29 +5,36 @@
   align-items: center;
   flex-wrap: wrap;
   height: 30rem;
-  padding: 2rem;
+  padding: 0;
 }
 
 .trending h3 {
   font-size: 1.75rem;
+  padding: 1rem;
 }
 
 .trending a {
   font-size: 1.5rem;
   text-decoration: none;
+  padding: 0 2rem;
 }
 
 .trending ul {
-  overflow-x: scroll;
   overflow-y: hidden;
   width: 100%;
   list-style: none;
-  height: 25rem;
+  height: 20rem;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  background: transparent;
+}
+
+.trending ul::-webkit-scrollbar {
+  display: none;
+  width: 0;
   background: transparent;
 }
 
@@ -45,11 +52,9 @@
 }
 
 .trending ul li:hover {
-  transform: scale(1.35);
+  transform: scale(1.25);
   box-shadow: none;
 }
-
-
 
 .trending ul li img {
   max-width: 100%;
