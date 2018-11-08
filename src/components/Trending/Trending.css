@@ -5,16 +5,18 @@
   align-items: center;
   flex-wrap: wrap;
   height: 30rem;
-  padding: 2rem;
+  padding: 0;
 }
 
 .trending h3 {
   font-size: 1.75rem;
+  padding: 1rem;
 }
 
 .trending a {
   font-size: 1.5rem;
   text-decoration: none;
+  padding: 2rem;
 }
 
 .trending ul {
@@ -48,8 +50,6 @@
   transform: scale(1.35);
   box-shadow: none;
 }
-
-
 
 .trending ul li img {
   max-width: 100%;
