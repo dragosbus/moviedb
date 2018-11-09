@@ -28,6 +28,11 @@ const getWeekTrending = data => ({
     payload: data
 });
 
+export const getMovieDetails = movie => ({
+    type: ActionTypes.GET_MOVIE_DETAILS,
+    payload: movie
+});
+
 export const fetchWeekTrending = () => dispatch => {
     let api = new Api();
     api.fetchWeekTrending()

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
 import WeekTrending from './components/Trending/WeekTrending';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -36,16 +37,21 @@ class App extends Component {
     });
   }
 
+  toggleMovieDetails = movie => {
+    console.log(movie);
+  };
+
   render() {
-    let { setSearchTerm, getApiData, searchTerm, movies, trailer, addToFavorite } = this.props;
+    console.log(this.props)
+    let {movies, trailer, addToFavorite, weekTrending, movieDetails } = this.props;
     return (
       <div className="App">
         <Link to="/favorites">Favorites</Link>
-        <WeekTrending/>
+        <WeekTrending toggleMovieDetails={this.props.toggleMovieDetails}/>
         <Movies 
           movies={movies} 
           showDetails={this.showDetails} 
-          addToFavorite={addToFavorite} 
+          addToFavorite={addToFavorite}
         />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}
@@ -56,6 +62,10 @@ class App extends Component {
           }
           closeModal={this.closeModal}
         />
+        <MovieDetails 
+          isShowed={movieDetails.on} 
+          movie={movieDetails}
+        />
       </div>
     );
   }
@@ -65,7 +75,8 @@ const mapStateToProps = state => ({
   searchTerm: state.searchTerm,
   movies: state.data,
   weekTrending: state.weekTrending,
-  trailer: state.trailer
+  trailer: state.trailer,
+  movieDetails: state.movieDetails,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -83,6 +94,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getWeekTrending() {
     dispatch(Actions.fetchWeekTrending())
+  },
+  toggleMovieDetails(movie) {
+    dispatch(Actions.getMovieDetails(movie))
   }
 });
 
