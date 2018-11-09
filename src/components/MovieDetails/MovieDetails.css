@@ -77,13 +77,13 @@ p.movie-details--overview {
 
 .cast span {
   font-size: 1.25rem;
-  margin: 1rem;
+  margin: 1rem 0;
   animation: fade-cast 0.5s ease-in;
 }
 
 .cast span::after {
   content: '|';
-  margin-left: 1rem;
+  margin: 0 1rem;
 }
 
 .see-more-cast {
@@ -93,6 +93,7 @@ p.movie-details--overview {
   border-radius: 2rem;
   padding: 1rem 2rem;
   cursor: pointer;
+  outline: none;
 }
 
 @keyframes movie-details {
