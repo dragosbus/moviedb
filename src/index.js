@@ -15,7 +15,7 @@ store.dispatch(Actions.addApiMiddleware('avengers'));
 store.subscribe(() => console.log(store.getState()));
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename='/moviedb/build'>
       <div>
         <Header />
         <Switch>

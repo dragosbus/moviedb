@@ -1,5 +1,6 @@
 {
   "name": "movie-database",
+  "homepage": "https://dragosbus.github.io/moviedb/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
