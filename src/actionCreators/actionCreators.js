@@ -41,8 +41,17 @@ export const fetchMovieDetails = movieId => dispatch => {
     let api = new Api();
     api.fetchMovieDetails(movieId)
         .then(res => {
-            console.log(res);
-            dispatch(getMovieDetails(res));
+            //fetch the cast
+            api.fetchMovieCast(movieId)
+                .then(({
+                    cast
+                }) => {
+                    dispatch(getMovieDetails(
+                        Object.assign({}, res, {
+                            cast
+                        })
+                    ));
+                })
         })
         .catch(err => {
             console.log(err);

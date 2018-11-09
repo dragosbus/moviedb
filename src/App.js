@@ -37,10 +37,6 @@ class App extends Component {
     });
   }
 
-  toggleMovieDetails = movie => {
-    console.log(movie);
-  };
-
   render() {
     console.log(this.props);
     let { movies, trailer, addToFavorite, weekTrending, movieDetails } = this.props;
