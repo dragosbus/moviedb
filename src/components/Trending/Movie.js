@@ -9,7 +9,7 @@ export const Movie = props => {
             className="movie-trending"
             key={i}
             style={{ left: `${i * 120}px` }}
-            onClick={()=>props.toggleMovieDetails(movie)}
+            onClick={()=>props.toggleMovieDetails(movie.id)}
           >
             <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} />
           </li>

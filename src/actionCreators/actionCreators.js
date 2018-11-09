@@ -37,11 +37,22 @@ export const hideMovieDetails = () => ({
     type: ActionTypes.HIDE_MOVIE_DETAILS
 });
 
+export const fetchMovieDetails = movieId => dispatch => {
+    let api = new Api();
+    api.fetchMovieDetails(movieId)
+        .then(res => {
+            console.log(res);
+            dispatch(getMovieDetails(res));
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 export const fetchWeekTrending = () => dispatch => {
     let api = new Api();
     api.fetchWeekTrending()
         .then(res => {
-            console.log(res);
             dispatch(getWeekTrending(res.results));
         })
         .catch(err => {

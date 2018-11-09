@@ -42,17 +42,13 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props)
-    let {movies, trailer, addToFavorite, weekTrending, movieDetails } = this.props;
+    console.log(this.props);
+    let { movies, trailer, addToFavorite, weekTrending, movieDetails } = this.props;
     return (
       <div className="App">
         <Link to="/favorites">Favorites</Link>
-        <WeekTrending toggleMovieDetails={this.props.toggleMovieDetails}/>
-        <Movies 
-          movies={movies} 
-          showDetails={this.showDetails} 
-          addToFavorite={addToFavorite}
-        />
+        <WeekTrending toggleMovieDetails={this.props.toggleMovieDetails} />
+        <Movies movies={movies} showDetails={this.showDetails} addToFavorite={addToFavorite} />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}
           trailer={
@@ -62,11 +58,7 @@ class App extends Component {
           }
           closeModal={this.closeModal}
         />
-        <MovieDetails 
-          isShowed={movieDetails.on} 
-          movie={movieDetails}
-          hideMovieDetails={this.props.hideMovieDetails}
-        />
+        <MovieDetails />
       </div>
     );
   }
@@ -77,7 +69,7 @@ const mapStateToProps = state => ({
   movies: state.data,
   weekTrending: state.weekTrending,
   trailer: state.trailer,
-  movieDetails: state.movieDetails,
+  movieDetails: state.movieDetails
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -94,14 +86,14 @@ const mapDispatchToProps = dispatch => ({
     dispatch(Actions.addToFavorite(movie));
   },
   getWeekTrending() {
-    dispatch(Actions.fetchWeekTrending())
+    dispatch(Actions.fetchWeekTrending());
   },
   toggleMovieDetails(movie) {
-    dispatch(Actions.getMovieDetails(movie))
+    dispatch(Actions.fetchMovieDetails(movie));
   },
   hideMovieDetails() {
-    dispatch(Actions.hideMovieDetails())
-  },
+    dispatch(Actions.hideMovieDetails());
+  }
 });
 
 export default connect(

@@ -26,6 +26,34 @@
   cursor: pointer;
 }
 
+.details {
+  position: absolute;
+  top: 40%;
+  color: #fff;
+  padding: 1rem;
+}
+
+.details p {
+  font-size: 1.45rem;
+  margin: 1rem 0;
+}
+
+.details p span:nth-child(2) {
+  margin: 0 1rem;
+}
+
+.details p span:nth-child(2)::before {
+  content: '|';
+  margin-right: 1rem;
+}
+
+.details h4 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+
+}
+
 @keyframes movie-details {
   0% {
     width: 0;
