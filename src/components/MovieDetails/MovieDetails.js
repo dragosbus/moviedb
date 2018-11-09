@@ -6,12 +6,13 @@ import * as Actions from '../../actionCreators/actionCreators';
 
 class MovieDetails extends React.Component {
   state = {
-    cast: 4
-  }
+    cast: 4,
+    castToggled: false
+  };
 
   noScroll = () => {
-    window.scrollTo(0,0);
-  }
+    window.scrollTo(0, 0);
+  };
 
   componentDidMount() {
     window.addEventListener('scroll', this.noScroll);
@@ -19,15 +20,11 @@ class MovieDetails extends React.Component {
 
   componentDidUpdate(prevProps) {
     //remove noScroll event when the movie details component is hided
-    if(prevProps.movie.on) {
+    if (prevProps.movie.on) {
       window.removeEventListener('scroll', this.noScroll);
     } else {
       window.addEventListener('scroll', this.noScroll);
     }
-  }
-
-  seeMoreCast = (all) => {
-    this.setState({cast: all})
   }
 
   calcRuntime = runtime => {
@@ -42,13 +39,16 @@ class MovieDetails extends React.Component {
     let { movie, hideMovieDetails } = this.props;
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
-      display: movie.on ? 'block' : 'none',
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
     };
 
-    return (
+    return !movie.on ? (
+      ''
+    ) : (
       <div className="movie-details" style={styleMovieDetails}>
-        <button className="movie-details--hide" onClick={hideMovieDetails}>X</button>
+        <button className="movie-details--hide" onClick={hideMovieDetails}>
+          X
+        </button>
         <div className="details">
           <p>
             <span>{movie.release_date}</span>
@@ -60,8 +60,9 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            {movie.cast && movie.cast.slice(0, this.state.cast).map(actor => <span key={actor.credit_id}>{actor.name}</span>)}
-            <button className="see-more-cast" onClick={()=>this.seeMoreCast(movie.cast.length-1)}>See More</button>
+            {movie.cast &&
+              movie.cast.slice(0, this.state.cast).map(actor => <span key={actor.credit_id}>{actor.name}</span>)}
+            <button className="see-more-cast">See More</button>
           </div>
         </div>
       </div>

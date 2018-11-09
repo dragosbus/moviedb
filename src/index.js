@@ -12,7 +12,7 @@ import './index.css';
 
 store.dispatch(Actions.addApiMiddleware('avengers'));
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

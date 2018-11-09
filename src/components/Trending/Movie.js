@@ -11,7 +11,7 @@ export const Movie = props => {
             style={{ left: `${i * 120}px` }}
             onClick={()=>props.toggleMovieDetails(movie.id)}
           >
-            <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} />
+            <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt={movie.original_title} />
           </li>
         );
       })}

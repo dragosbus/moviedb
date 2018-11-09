@@ -38,8 +38,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
-    let { movies, trailer, addToFavorite, weekTrending, movieDetails } = this.props;
+    let { movies, trailer, addToFavorite} = this.props;
     return (
       <div className="App">
         <Link to="/favorites">Favorites</Link>
