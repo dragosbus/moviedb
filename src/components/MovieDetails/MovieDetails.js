@@ -3,6 +3,7 @@ import './MovieDetails.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
+import playBtn from '../../play-button.svg'
 
 class MovieDetails extends React.Component {
   state = {
@@ -48,6 +49,9 @@ class MovieDetails extends React.Component {
       <div className="movie-details" style={styleMovieDetails}>
         <button className="movie-details--hide" onClick={hideMovieDetails}>
           X
+        </button>
+        <button className="play-trailer">
+          <img src={playBtn} alt="play trailer"/>
         </button>
         <div className="details">
           <p>

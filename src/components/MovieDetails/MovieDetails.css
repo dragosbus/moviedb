@@ -13,6 +13,9 @@
   background-position: center center;
   background-size: 100% 100%;
   overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie-details--hide {
@@ -93,6 +96,27 @@ p.movie-details--overview {
   padding: 1rem 2rem;
   cursor: pointer;
   outline: none;
+}
+
+.play-trailer {
+  background: none;
+  border: none;
+  margin: 0 auto;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in;
+  outline: none;
+  text-align: center;
+  margin-top: -50%;
+}
+
+.play-trailer:hover {
+  opacity: 1;
+}
+
+.play-trailer img {
+  width: 5rem;
+  height: 5rem;
 }
 
 @keyframes movie-details {
