@@ -4,13 +4,13 @@
   border-radius: 0;
   width: 100%;
   height: 100vh;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   margin: 0 auto;
   z-index: 10000;
   background: #fff;
-  animation: movie-details 0.5s ease-in;
+  animation: movie-details 0.75s ease-in-out;
   background-position: center center;
   background-size: 100% 100%;
   overflow: scroll;
@@ -77,13 +77,13 @@ p.movie-details--overview {
 
 .cast span {
   font-size: 1.25rem;
-  margin: 1rem;
-  animation: fade-cast 0.5s ease-in;
+  margin: 1rem 0;
+  animation: fade-cast 1.5s ease-in-out;
 }
 
 .cast span::after {
   content: '|';
-  margin-left: 1rem;
+  margin: 0 1rem;
 }
 
 .see-more-cast {
@@ -93,14 +93,24 @@ p.movie-details--overview {
   border-radius: 2rem;
   padding: 1rem 2rem;
   cursor: pointer;
+  outline: none;
 }
 
 @keyframes movie-details {
   0% {
-    width: 0;
+    transform: translate3d(0, -2000px, 0);
   }
+
+  25% {
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 0.5;
+  }
+
   100% {
-    width: 100%;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -108,7 +118,8 @@ p.movie-details--overview {
   0% {
     transform: translate3d(-20px, 0, 0);
   }
+
   100% {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
   }
 }

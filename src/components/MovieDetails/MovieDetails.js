@@ -9,6 +9,21 @@ class MovieDetails extends React.Component {
     cast: 4
   }
 
+  noScroll = () => {
+    window.scrollTo(0,0);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.noScroll);
+  }
+
+  componentDidUpdate(prevProps) {
+    //remove noScroll event when the movie details component is hided
+    if(prevProps.movie.on) {
+      window.removeEventListener('scroll', this.noScroll);
+    }
+  }
+
   seeMoreCast = (all) => {
     this.setState({cast: all})
   }
