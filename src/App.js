@@ -65,6 +65,7 @@ class App extends Component {
         <MovieDetails 
           isShowed={movieDetails.on} 
           movie={movieDetails}
+          hideMovieDetails={this.props.hideMovieDetails}
         />
       </div>
     );
@@ -97,7 +98,10 @@ const mapDispatchToProps = dispatch => ({
   },
   toggleMovieDetails(movie) {
     dispatch(Actions.getMovieDetails(movie))
-  }
+  },
+  hideMovieDetails() {
+    dispatch(Actions.hideMovieDetails())
+  },
 });
 
 export default connect(

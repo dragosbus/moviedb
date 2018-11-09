@@ -33,6 +33,10 @@ export const getMovieDetails = movie => ({
     payload: movie
 });
 
+export const hideMovieDetails = () => ({
+    type: ActionTypes.HIDE_MOVIE_DETAILS
+});
+
 export const fetchWeekTrending = () => dispatch => {
     let api = new Api();
     api.fetchWeekTrending()
