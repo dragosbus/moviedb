@@ -4,10 +4,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
+import CastList from './Cast';
 
 class MovieDetails extends React.Component {
   state = {
-    cast: 8,
+    length: 8,
     castToggled: false
   };
 
@@ -61,13 +62,7 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            <ul className="cast-list">
-              {movie.cast &&
-                movie.cast.slice(0, this.state.cast).map((actor, i) => <li key={actor.credit_id} style={{ left: `${i * 120}px` }}>
-                  <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${actor.profile_path}`}/>
-                  <p>{actor.name}</p>
-                </li>)}
-            </ul>
+            <CastList cast={this.props.movie.cast} castLength={this.state.length}/>
             <button className="see-more-cast">See More</button>
           </div>
         </div>
