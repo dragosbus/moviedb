@@ -1,7 +1,5 @@
 import * as ActionTypes from '../actionTypes/actionTypes';
-import {
-    Api
-} from '../components/Api';
+import {API} from '../components/Api';
 
 export const setSearchTerm = value => ({
     type: ActionTypes.SET_SEARCH_TERM,
@@ -38,11 +36,10 @@ export const hideMovieDetails = () => ({
 });
 
 export const fetchMovieDetails = movieId => dispatch => {
-    let api = new Api();
-    api.fetchMovieDetails(movieId)
+    API.fetchMovieDetails(movieId)
         .then(res => {
             //fetch the cast
-            api.fetchMovieCast(movieId)
+            API.fetchMovieCast(movieId)
                 .then(({
                     cast
                 }) => {
@@ -59,8 +56,7 @@ export const fetchMovieDetails = movieId => dispatch => {
 };
 
 export const fetchWeekTrending = () => dispatch => {
-    let api = new Api();
-    api.fetchWeekTrending()
+    API.fetchWeekTrending()
         .then(res => {
             dispatch(getWeekTrending(res.results));
         })
@@ -70,15 +66,13 @@ export const fetchWeekTrending = () => dispatch => {
 };
 
 export const addApiMiddleware = term => dispatch => {
-    let api = new Api();
-    api.getData(term)
-        .then(res => dispatch(addApiData(res.data.results)))
+    API.fetchMovieSearched(term)
+        .then(res => dispatch(addApiData(res.results)))
         .catch(err => console.log(err));
 };
 
 export const getTrailerMiddleware = movieId => dispatch => {
-    let api = new Api();
-    api.getTrailer(movieId)
+    API.fetchTrailer(movieId)
         .then(res => {
             let trailer = res.trailers.results[0].key;
             dispatch(getTrailer(trailer));
