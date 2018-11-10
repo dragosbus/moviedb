@@ -67,7 +67,7 @@ export const fetchWeekTrending = () => dispatch => {
 
 export const addApiMiddleware = term => dispatch => {
     API.fetchMovieSearched(term)
-        .then(res => dispatch(addApiData(res.data.results)))
+        .then(res => dispatch(addApiData(res.results)))
         .catch(err => console.log(err));
 };
 

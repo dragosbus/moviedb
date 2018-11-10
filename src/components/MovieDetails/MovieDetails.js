@@ -15,10 +15,6 @@ class MovieDetails extends React.Component {
     window.scrollTo(0, 0);
   };
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.noScroll);
-  }
-
   componentDidUpdate(prevProps) {
     //remove noScroll event when the movie details component is hided
     if (prevProps.movie.on) {
