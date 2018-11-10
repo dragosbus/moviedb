@@ -3,11 +3,11 @@ import './MovieDetails.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
-import playBtn from '../../play-button.svg'
+import playBtn from '../../play-button.svg';
 
 class MovieDetails extends React.Component {
   state = {
-    cast: 4,
+    cast: 8,
     castToggled: false
   };
 
@@ -38,6 +38,7 @@ class MovieDetails extends React.Component {
     const styleMovieDetails = {
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
     };
+    console.log(movie.cast);
 
     return !movie.on ? (
       ''
@@ -47,7 +48,7 @@ class MovieDetails extends React.Component {
           X
         </button>
         <button className="play-trailer">
-          <img src={playBtn} alt="play trailer"/>
+          <img src={playBtn} alt="play trailer" />
         </button>
         <div className="details">
           <p>
@@ -60,8 +61,13 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            {movie.cast &&
-              movie.cast.slice(0, this.state.cast).map(actor => <span key={actor.credit_id}>{actor.name}</span>)}
+            <ul className="cast-list">
+              {movie.cast &&
+                movie.cast.slice(0, this.state.cast).map((actor, i) => <li key={actor.credit_id} style={{ left: `${i * 120}px` }}>
+                  <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${actor.profile_path}`}/>
+                  <p>{actor.name}</p>
+                </li>)}
+            </ul>
             <button className="see-more-cast">See More</button>
           </div>
         </div>
