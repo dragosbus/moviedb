@@ -60,3 +60,14 @@
   max-width: 100%;
   border-radius: 1.5rem;
 }
+
+@media (min-width: 960px) {
+  .trending ul {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .trending h3 {
+    width: 50%;
+  }
+}
