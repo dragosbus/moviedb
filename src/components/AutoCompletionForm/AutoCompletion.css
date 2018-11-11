@@ -1,0 +1,26 @@
+.auto-completion {
+  position: absolute;
+  top: 8rem;
+  width: 60%;
+  list-style: none;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 100000;
+  background: rgba(7, 7, 7, 0.89);
+  border-radius: 0 0 2rem 2rem;
+  color: #fff;
+}
+
+.auto-completion li {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.274);
+  width: 100%;
+  padding: 1rem;
+}
+
+.auto-completion li:last-of-type {
+  border: none;
+}

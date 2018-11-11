@@ -64,15 +64,16 @@ const mapStateToProps = state => ({
   movies: state.data,
   weekTrending: state.weekTrending,
   trailer: state.trailer,
-  movieDetails: state.movieDetails
+  movieDetails: state.movieDetails,
+  autoCompletion: state.autoCompletion,
 });
 
 const mapDispatchToProps = dispatch => ({
   setSearchTerm(value) {
     dispatch(Actions.setSearchTerm(value));
   },
-  getApiData(term) {
-    dispatch(Actions.addApiMiddleware(term));
+  fetchMovieSearched(term) {
+    dispatch(Actions.fetchMovieSearched(term));
   },
   getTrailer(movieId) {
     dispatch(Actions.getTrailerMiddleware(movieId));

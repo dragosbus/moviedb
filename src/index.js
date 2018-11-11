@@ -10,14 +10,13 @@ import {Header} from './components/Header';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-store.dispatch(Actions.addApiMiddleware('avengers'));
+store.dispatch(Actions.fetchMovieSearched('avengers'));
 
-// store.subscribe(() => console.log(store.getState()));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename='/moviedb/build'>
       <div>
-        <Header />
+        <Header/>
         <Switch>
           <Route exact path="/" component={App} />
           <Route path='/favorites' component={Favorites}/>
