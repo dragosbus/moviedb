@@ -12,12 +12,11 @@ import './index.css';
 
 store.dispatch(Actions.addApiMiddleware('avengers'));
 
-// store.subscribe(() => console.log(store.getState()));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Header />
+        <Header/>
         <Switch>
           <Route exact path="/" component={App} />
           <Route path='/favorites' component={Favorites}/>

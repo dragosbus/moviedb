@@ -4,7 +4,6 @@ import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
 import WeekTrending from './components/Trending/WeekTrending';
 import MovieDetails from './components/MovieDetails/MovieDetails';
-import AutoCompletion from './components/AutoCompletionForm/AutoCompletion';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -55,7 +54,6 @@ class App extends Component {
           closeModal={this.closeModal}
         />
         <MovieDetails />
-        <AutoCompletion movies={autoCompletion}/>
       </div>
     );
   }

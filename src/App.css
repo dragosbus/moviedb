@@ -1,5 +1,6 @@
 .main-header {
   width: 100%;
+  position: relative;
   background: rgba(7, 7, 7, 0.89);
   padding: 1rem;
   box-shadow: 0 0 20px rgba(33, 30, 58, 0.35);

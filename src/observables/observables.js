@@ -1,5 +1,5 @@
 import {fromEvent, from} from 'rxjs';
-import {map, filter, throttleTime, switchMap, concatAll, take, distinctUntilChanged} from 'rxjs/operators';
+import {map, filter, throttleTime, switchMap, distinctUntilChanged} from 'rxjs/operators';
 import {API} from '../components/Api';
 
 export const autoCompletion$ = (element, eventType) => {

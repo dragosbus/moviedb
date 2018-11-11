@@ -1,14 +1,19 @@
 import React from 'react';
 import './AutoCompletion.css';
+import {connect} from 'react-redux';
 
 const AutoCompletion = props => {
   return (
     <ul className="auto-completion">
-      {props.movies.map((movie, i) => (
+      {props.autoCompletionMovies.slice(0, 5).map((movie, i) => (
         <li key={movie.title}>{movie.title}</li>
       ))}
     </ul>
   );
 };
 
-export default AutoCompletion;
+const mapStateToProps = state => ({
+  autoCompletionMovies: state.autoCompletion,
+});
+
+export default connect(mapStateToProps, null)(AutoCompletion);

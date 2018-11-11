@@ -13,10 +13,9 @@ class Form extends Component {
   };
 
   onChangeQuery = e => {
-    autoCompletion$(e.target, 'input').subscribe(v=>{
-      console.log(v);
+    autoCompletion$(e.target, 'input').subscribe(movies=>{
       this.props.emptyAutoCompletion();
-      this.props.autoCompletion(v);
+      this.props.autoCompletion(movies);
     });
     this.setState({ query: e.target.value });
   };
