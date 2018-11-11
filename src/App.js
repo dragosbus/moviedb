@@ -4,6 +4,7 @@ import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
 import WeekTrending from './components/Trending/WeekTrending';
 import MovieDetails from './components/MovieDetails/MovieDetails';
+import AutoCompletion from './components/AutoCompletionForm/AutoCompletion';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -38,7 +39,7 @@ class App extends Component {
   }
 
   render() {
-    let { movies, trailer, addToFavorite} = this.props;
+    let { movies, trailer, addToFavorite, autoCompletion} = this.props;
     return (
       <div className="App">
         <Link to="/favorites">Favorites</Link>
@@ -54,6 +55,7 @@ class App extends Component {
           closeModal={this.closeModal}
         />
         <MovieDetails />
+        <AutoCompletion movies={autoCompletion}/>
       </div>
     );
   }
@@ -64,7 +66,8 @@ const mapStateToProps = state => ({
   movies: state.data,
   weekTrending: state.weekTrending,
   trailer: state.trailer,
-  movieDetails: state.movieDetails
+  movieDetails: state.movieDetails,
+  autoCompletion: state.autoCompletion,
 });
 
 const mapDispatchToProps = dispatch => ({

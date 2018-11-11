@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import Input from './Input';
 import { FaSearch } from 'react-icons/fa';
+import {autoCompletion$} from '../../observables/observables';
+import {autoCompletion, emptyAutoCompletion} from '../../actionCreators/actionCreators';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class Form extends Component {
+class Form extends Component {
   state = {
     query: '',
     inputQueryShowed: false
   };
 
   onChangeQuery = e => {
+    autoCompletion$(e.target, 'input').subscribe(v=>{
+      console.log(v);
+      this.props.emptyAutoCompletion();
+      this.props.autoCompletion(v);
+    });
     this.setState({ query: e.target.value });
   };
 
@@ -45,3 +54,10 @@ export default class Form extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  autoCompletion: autoCompletion,
+  emptyAutoCompletion: emptyAutoCompletion
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(Form);

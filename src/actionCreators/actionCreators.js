@@ -35,6 +35,15 @@ export const hideMovieDetails = () => ({
     type: ActionTypes.HIDE_MOVIE_DETAILS
 });
 
+export const autoCompletion = movies =>({
+    type: ActionTypes.SET_AUTO_COMPLETION,
+    payload: movies
+});
+
+export const emptyAutoCompletion = () => ({
+    type: ActionTypes.EMPTY_AUTO_COMPLETION
+});
+
 export const fetchMovieDetails = movieId => dispatch => {
     API.fetchMovieDetails(movieId)
         .then(res => {
