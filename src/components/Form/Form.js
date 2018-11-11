@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from './Input';
 import { FaSearch } from 'react-icons/fa';
 import {autoCompletion$} from '../../observables/observables';
-import {autoCompletion, emptyAutoCompletion} from '../../actionCreators/actionCreators';
+import {autoCompletion, emptyAutoCompletion, setSearchTerm, fetchMovieSearched} from '../../actionCreators/actionCreators';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,9 +14,11 @@ class Form extends Component {
 
   onChangeQuery = e => {
     autoCompletion$(e.target, 'input').subscribe(movies=>{
+      //for every typing, clear the previous list of movies
       this.props.emptyAutoCompletion();
       this.props.autoCompletion(movies);
     });
+    this.props.setSearchTerm(e.target.value);
     this.setState({ query: e.target.value });
   };
 
@@ -27,8 +29,7 @@ class Form extends Component {
   submitForm = e => {
     e.preventDefault();
     if (this.state.inputQueryShowed) {
-      this.props.setSearchTerm(this.state.query);
-      this.props.getData(this.state.query);
+      this.props.fetchMovieSearched(this.props.searchTerm);
     } else {
       this.toggleInput();
     }
@@ -40,7 +41,7 @@ class Form extends Component {
         <Input
           type="search"
           placeholder={'Search movie'}
-          value={this.state.query}
+          value={this.props.searchTerm}
           onChangeHandler={this.onChangeQuery}
           style={{
             display: this.state.inputQueryShowed ? 'block' : 'none'
@@ -54,9 +55,15 @@ class Form extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  searchTerm: state.searchTerm,
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   autoCompletion: autoCompletion,
-  emptyAutoCompletion: emptyAutoCompletion
+  emptyAutoCompletion: emptyAutoCompletion,
+  setSearchTerm: setSearchTerm,
+  fetchMovieSearched: fetchMovieSearched,
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

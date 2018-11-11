@@ -1,12 +1,18 @@
 import React from 'react';
 import './AutoCompletion.css';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setSearchTerm, emptyAutoCompletion} from '../../actionCreators/actionCreators';
 
 const AutoCompletion = props => {
+  const {setSearchTerm, autoCompletionMovies, emptyAutoCompletion} = props;
   return (
     <ul className="auto-completion">
-      {props.autoCompletionMovies.slice(0, 5).map((movie, i) => (
-        <li key={movie.title}>{movie.title}</li>
+      {autoCompletionMovies.slice(0, 5).map(movie => (
+        <li onClick={()=>{
+          setSearchTerm(movie.title);
+          emptyAutoCompletion();
+        }} key={movie.id}>{movie.title}</li>
       ))}
     </ul>
   );
@@ -16,4 +22,9 @@ const mapStateToProps = state => ({
   autoCompletionMovies: state.autoCompletion,
 });
 
-export default connect(mapStateToProps, null)(AutoCompletion);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setSearchTerm: setSearchTerm,
+  emptyAutoCompletion: emptyAutoCompletion,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AutoCompletion);

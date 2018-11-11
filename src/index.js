@@ -10,7 +10,7 @@ import {Header} from './components/Header';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-store.dispatch(Actions.addApiMiddleware('avengers'));
+store.dispatch(Actions.fetchMovieSearched('avengers'));
 
 ReactDOM.render(
   <Provider store={store}>

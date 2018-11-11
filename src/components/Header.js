@@ -6,7 +6,7 @@ import logo from '../logo.svg';
 
 export class Header extends Component {
   render() {
-    let { setSearchTerm, getApiData, searchTerm, autoCompletion } = this.props;
+    let { setSearchTerm, getApiData, searchTerm } = this.props;
     return (
       <header className="main-header">
         <Link to="/">

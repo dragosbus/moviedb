@@ -6,7 +6,7 @@ export const setSearchTerm = value => ({
     payload: value
 });
 
-export const addApiData = (data) => ({
+export const getMovieSearched = (data) => ({
     type: ActionTypes.ADD_API_DATA,
     payload: data
 });
@@ -74,9 +74,9 @@ export const fetchWeekTrending = () => dispatch => {
         });
 };
 
-export const addApiMiddleware = term => dispatch => {
+export const fetchMovieSearched = term => dispatch => {
     API.fetchMovieSearched(term)
-        .then(res => dispatch(addApiData(res.results)))
+        .then(res => dispatch(getMovieSearched(res.results)))
         .catch(err => console.log(err));
 };
 

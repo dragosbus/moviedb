@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-    let { movies, trailer, addToFavorite, autoCompletion} = this.props;
+    let { movies, trailer, addToFavorite} = this.props;
     return (
       <div className="App">
         <Link to="/favorites">Favorites</Link>
@@ -72,8 +72,8 @@ const mapDispatchToProps = dispatch => ({
   setSearchTerm(value) {
     dispatch(Actions.setSearchTerm(value));
   },
-  getApiData(term) {
-    dispatch(Actions.addApiMiddleware(term));
+  fetchMovieSearched(term) {
+    dispatch(Actions.fetchMovieSearched(term));
   },
   getTrailer(movieId) {
     dispatch(Actions.getTrailerMiddleware(movieId));
