@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Input, InputRef} from './Input';
+import {InputRef} from './Input';
 import { FaSearch } from 'react-icons/fa';
 import {autoCompletion$} from '../../observables/observables';
 import {autoCompletion, emptyAutoCompletion, setSearchTerm, fetchMovieSearched} from '../../actionCreators/actionCreators';
@@ -35,7 +35,7 @@ class Form extends Component {
   submitForm = e => {
     e.preventDefault();
     if (this.state.inputQueryShowed) {
-      //fetch the movies found and then unsubscribe from event for avoid memory leak
+      //fetch the movies founded and then unsubscribe from event for avoid memory leak
       this.props.fetchMovieSearched(this.props.searchTerm);
       this.autoCompletionSubscription(this.inpRef.current).unsubscribe();
     } else {

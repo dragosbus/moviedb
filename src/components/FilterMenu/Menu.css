@@ -1,0 +1,45 @@
+.filter-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 10rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.filter-menu ul {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  list-style: none;
+  height: 10rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: transparent;
+}
+
+.filter-menu ul li {
+  position: absolute;
+  width: 10rem;
+  box-shadow: 0.25rem 0.15rem 0.5rem rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  transition: all 0.35s ease-in;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 1.35rem;
+}
+
+.filter-menu ul::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  background: transparent;
+}
