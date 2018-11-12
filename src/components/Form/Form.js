@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from './Input';
+import {Input, InputRef} from './Input';
 import { FaSearch } from 'react-icons/fa';
 import {autoCompletion$} from '../../observables/observables';
 import {autoCompletion, emptyAutoCompletion, setSearchTerm, fetchMovieSearched} from '../../actionCreators/actionCreators';
@@ -12,12 +12,18 @@ class Form extends Component {
     inputQueryShowed: false
   };
 
-  onChangeQuery = e => {
-    autoCompletion$(e.target, 'input').subscribe(movies=>{
+  inpRef = React.createRef();
+
+  autoCompletionSubscription = (event) => {
+    return autoCompletion$(event, 'input').subscribe(movies=>{
       //for every typing, clear the previous list of movies
       this.props.emptyAutoCompletion();
       this.props.autoCompletion(movies);
     });
+  }
+
+  onChangeQuery = e => {
+    this.autoCompletionSubscription(e.target);
     this.props.setSearchTerm(e.target.value);
     this.setState({ query: e.target.value });
   };
@@ -29,7 +35,9 @@ class Form extends Component {
   submitForm = e => {
     e.preventDefault();
     if (this.state.inputQueryShowed) {
+      //fetch the movies found and then unsubscribe from event for avoid memory leak
       this.props.fetchMovieSearched(this.props.searchTerm);
+      this.autoCompletionSubscription(this.inpRef.current).unsubscribe();
     } else {
       this.toggleInput();
     }
@@ -38,7 +46,7 @@ class Form extends Component {
   render() {
     return (
       <form id="movie-search" onSubmit={this.submitForm}>
-        <Input
+        <InputRef
           type="search"
           placeholder={'Search movie'}
           value={this.props.searchTerm}
@@ -46,6 +54,7 @@ class Form extends Component {
           style={{
             display: this.state.inputQueryShowed ? 'block' : 'none'
           }}
+          ref={this.inpRef}
         />
         <button type="submit">
           <FaSearch />
