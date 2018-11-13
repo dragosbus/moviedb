@@ -28,14 +28,8 @@ const StyledLink = styled(Link)`
   padding: 0 2rem;
 `;
 
-const uniqueMovie = favorites => {
-  
-};
-
 export default class SlideMovies extends React.Component {
-  
   render() {
-   
     const { title, path, toggleMovieDetails, data } = this.props;
     return this.props.data.length > 0 ? (
       <Wrapper>

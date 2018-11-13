@@ -3,6 +3,7 @@ import SlideMovies from '../SlideMovies/SlideMovies';
 import {connect} from 'react-redux';
 
 class Favorites extends React.Component {
+  
   render() {
     return(
       <SlideMovies
