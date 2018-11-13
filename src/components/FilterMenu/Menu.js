@@ -2,7 +2,7 @@ import React from 'react';
 import './Menu.css';
 
 const FilterMenu = props => {
-  const menus = ['Popular', 'Upcoming', 'Popular', 'Upcoming', 'Popular', 'Upcoming'];
+  const menus = ['Popular', 'Top Rated', 'Upcoming', 'My List', 'Categories'];
 
   return (
     <div className="filter-menu">
