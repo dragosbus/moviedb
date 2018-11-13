@@ -6,12 +6,12 @@
   flex-wrap: wrap;
   height: 10rem;
   padding: 0;
-  overflow: hidden;
+  padding: 1rem;
 }
 
 .filter-menu ul {
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   width: 100%;
   list-style: none;
   height: 10rem;
