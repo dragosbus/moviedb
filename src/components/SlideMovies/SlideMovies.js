@@ -9,13 +9,17 @@ const Wrapper = styled.section`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  height: 30rem;
+  height: 25rem;
   padding: 0;
 `;
 
 const Title = styled.h3`
   font-size: 1.75rem;
   padding: 1rem;
+
+  @media (min-width: 960px) {
+    width: 50%;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -27,12 +31,14 @@ const StyledLink = styled(Link)`
 export default class SlideMovies extends React.Component {
   render() {
     const { title, path, toggleMovieDetails, data } = this.props;
-    return (
+    return this.props.data.length > 0 ? (
       <Wrapper>
         <Title>{title}</Title>
         <StyledLink to={path}>More</StyledLink>
         <Movie data={data} toggleMovieDetails={toggleMovieDetails} />
       </Wrapper>
+    ) : (
+      ''
     );
   }
 }

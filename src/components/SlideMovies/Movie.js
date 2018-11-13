@@ -5,7 +5,7 @@ const ListStyled = styled.ul`
   overflow-y: hidden;
   width: 100%;
   list-style: none;
-  height: 20rem;
+  height: 21rem;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -17,6 +17,11 @@ const ListStyled = styled.ul`
     display: none;
     width: 0;
     background: transparent;
+  }
+
+  @media(min-width:960px) {
+    margin: 0 auto;
+    width: 60%;
   }
 `;
 
