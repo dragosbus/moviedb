@@ -6,7 +6,6 @@
   flex-wrap: wrap;
   height: 10rem;
   padding: 0;
-  padding: 1rem;
 }
 
 .filter-menu ul {
@@ -24,11 +23,11 @@
 }
 
 .filter-menu ul li {
-  background: linear-gradient(135deg, rgba(201, 9, 18, 0.977), rgba(252, 8, 48, 0.815));
+  background: linear-gradient(135deg, rgb(184, 27, 35), rgba(211, 31, 31, 0.815));
   color: #fff;
   position: absolute;
   width: 10rem;
-  box-shadow: 0 1.15rem 3.5rem -0.5rem rgba(255, 6, 6, 0.618);
+  box-shadow: 0.15rem 1.15rem 2.5rem -0.9rem rgba(233, 29, 29, 0.818);
   border-radius: 0.5rem;
   transition: all 0.35s ease-in;
   cursor: pointer;
@@ -36,7 +35,9 @@
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
+  margin: 0 1rem;
   font-size: 1.35rem;
+  font-weight: 700;
 }
 
 .filter-menu ul::-webkit-scrollbar {

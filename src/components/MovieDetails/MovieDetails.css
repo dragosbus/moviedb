@@ -18,13 +18,25 @@
   align-items: center;
 }
 
+.movie-details svg {
+  position: absolute;
+  top: 1.15rem;
+  right: 2rem;
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 0.15rem;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}
+
 .movie-details--hide {
   position: absolute;
   top: 2rem;
   left: 2rem;
   background: none;
   border: none;
-  font-size: 1.75rem;
+  font-size: 2rem;
   color: #fff;
   cursor: pointer;
 }

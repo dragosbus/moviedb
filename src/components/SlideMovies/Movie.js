@@ -1,5 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+
+const fadeIn = keyframes`
+  0%{
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  100%{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+`;
 
 const ListStyled = styled.ul`
   overflow-y: hidden;
@@ -36,6 +47,7 @@ const ElementListStyled = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: ${fadeIn} 0.5s ease-in;
 `;
 
 const ImageStyled = styled.img`
