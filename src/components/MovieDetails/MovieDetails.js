@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
+import {HeartIcon} from '../Icons/Icons';
 import CastList from './Cast';
 
 class MovieDetails extends React.Component {
@@ -39,7 +40,6 @@ class MovieDetails extends React.Component {
     const styleMovieDetails = {
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
     };
-    console.log(movie.cast);
 
     return !movie.on ? (
       ''
@@ -48,6 +48,7 @@ class MovieDetails extends React.Component {
         <button className="movie-details--hide" onClick={hideMovieDetails}>
           X
         </button>
+        <HeartIcon/>
         <button className="play-trailer">
           <img src={playBtn} alt="play trailer" />
         </button>
