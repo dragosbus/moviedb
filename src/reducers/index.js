@@ -5,6 +5,7 @@ import trailerApiReducer from './trailerApi';
 import {weekTrendingReducer} from './weekTrending';
 import {movieDetailsReducer} from './movieDetails';
 import {autoCompletionReducer} from './autoCompletion';
+import {favoritesReducer} from './favorites';
 
 const rootReducer = combineReducers({
     searchTerm: searchTermReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     weekTrending: weekTrendingReducer,
     movieDetails: movieDetailsReducer,
     autoCompletion: autoCompletionReducer,
+    favorites: favoritesReducer,
 });
 
 export default rootReducer;

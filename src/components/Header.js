@@ -6,13 +6,12 @@ import logo from '../logo.svg';
 
 export class Header extends Component {
   render() {
-    let { setSearchTerm, getApiData, searchTerm } = this.props;
     return (
       <header className="main-header">
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
-        <Form setSearchTerm={setSearchTerm} getData={getApiData} searchTerm={searchTerm} />
+        <Form />
         <AutoCompletion />
       </header>
     );

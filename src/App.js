@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Movies } from './components/Movies';
 import { MovieDetail } from './components/MovieDetail';
 import WeekTrending from './components/Trending/WeekTrending';
+import Favorites from './components/Favorites/Favorites';
 import MovieDetails from './components/MovieDetails/MovieDetails';
+import FilterMenu from './components/FilterMenu/Menu';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -41,8 +42,10 @@ class App extends Component {
     let { movies, trailer, addToFavorite} = this.props;
     return (
       <div className="App">
-        <Link to="/favorites">Favorites</Link>
+        {/* <Link to="/favorites">Favorites</Link> */}
+        <FilterMenu/>
         <WeekTrending toggleMovieDetails={this.props.toggleMovieDetails} />
+        <Favorites toggleMovieDetails={this.props.toggleMovieDetails}/>
         <Movies movies={movies} showDetails={this.showDetails} addToFavorite={addToFavorite} />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}

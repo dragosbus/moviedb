@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './Trending.css';
-import { Movie } from './Movie';
+import SlideMovies from '../SlideMovies/SlideMovies';
 
 class WeekTrending extends React.Component {
   render() {
     return (
-      <div className="trending">
-        <h3>Week Trending</h3>
-        <Link to="/week-trending">More</Link>
-        <Movie weekTrending={this.props.weekTrending} toggleMovieDetails={this.props.toggleMovieDetails} />
-      </div>
+      <SlideMovies
+        title="Week Trending"
+        path="/week-trending"
+        data={this.props.weekTrending}
+        toggleMovieDetails={this.props.toggleMovieDetails}
+      />
     );
   }
 }
