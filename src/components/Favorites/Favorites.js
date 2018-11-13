@@ -5,7 +5,12 @@ import {connect} from 'react-redux';
 class Favorites extends React.Component {
   render() {
     return(
-      <SlideMovies/>
+      <SlideMovies
+        title="Favorites Movies"
+        path="/favorites"
+        data={this.props.favorites}
+        toggleMovieDetails={this.props.toggleMovieDetails}
+      />
     );
   }
 }
