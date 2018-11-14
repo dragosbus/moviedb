@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
-import {HeartIcon} from '../Icons/Icons';
+import { HeartIcon } from '../Icons/Icons';
 import CastList from './Cast';
 
 class MovieDetails extends React.Component {
@@ -48,7 +48,9 @@ class MovieDetails extends React.Component {
         <button className="movie-details--hide" onClick={hideMovieDetails}>
           X
         </button>
-        <HeartIcon/>
+        <button onClick={() => this.props.addToFavorite(movie)}>
+          <HeartIcon />
+        </button>
         <button className="play-trailer">
           <img src={playBtn} alt="play trailer" />
         </button>
@@ -63,7 +65,7 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            <CastList cast={this.props.movie.cast} castLength={this.state.length}/>
+            <CastList cast={this.props.movie.cast} castLength={this.state.length} />
             <button className="see-more-cast">See More</button>
           </div>
         </div>
@@ -79,7 +81,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      hideMovieDetails: Actions.hideMovieDetails
+      hideMovieDetails: Actions.hideMovieDetails,
+      addToFavorite: Actions.addToFavorite
     },
     dispatch
   );
