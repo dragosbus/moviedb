@@ -1,5 +1,7 @@
 import * as ActionTypes from '../actionTypes/actionTypes';
-import {API} from '../components/Api';
+import {
+    API
+} from '../components/Api';
 
 export const setSearchTerm = value => ({
     type: ActionTypes.SET_SEARCH_TERM,
@@ -26,16 +28,16 @@ const getWeekTrending = data => ({
     payload: data
 });
 
-export const getMovieDetails = movie => ({
+export const getMovieDetails = movieId => ({
     type: ActionTypes.GET_MOVIE_DETAILS,
-    payload: movie
+    payload: movieId
 });
 
 export const hideMovieDetails = () => ({
     type: ActionTypes.HIDE_MOVIE_DETAILS
 });
 
-export const autoCompletion = movies =>({
+export const autoCompletion = movies => ({
     type: ActionTypes.SET_AUTO_COMPLETION,
     payload: movies
 });
@@ -44,25 +46,25 @@ export const emptyAutoCompletion = () => ({
     type: ActionTypes.EMPTY_AUTO_COMPLETION
 });
 
-export const fetchMovieDetails = movieId => dispatch => {
-    API.fetchMovieDetails(movieId)
-        .then(res => {
-            //fetch the cast
-            API.fetchMovieCast(movieId)
-                .then(({
-                    cast
-                }) => {
-                    dispatch(getMovieDetails(
-                        Object.assign({}, res, {
-                            cast
-                        })
-                    ));
-                })
-        })
-        .catch(err => {
-            console.log(err);
-        });
-};
+// export const fetchMovieDetails = movieId => dispatch => {
+//     API.fetchMovieDetails(movieId)
+//         .then(res => {
+//             //fetch the cast
+//             API.fetchMovieCast(movieId)
+//                 .then(({
+//                     cast
+//                 }) => {
+//                     dispatch(getMovieDetails(
+//                         Object.assign({}, res, {
+//                             cast
+//                         })
+//                     ));
+//                 })
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         });
+// };
 
 export const fetchWeekTrending = () => dispatch => {
     API.fetchWeekTrending()

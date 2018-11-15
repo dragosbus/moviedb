@@ -87,8 +87,8 @@ const mapDispatchToProps = dispatch => ({
   getWeekTrending() {
     dispatch(Actions.fetchWeekTrending());
   },
-  toggleMovieDetails(movie) {
-    dispatch(Actions.fetchMovieDetails(movie));
+  toggleMovieDetails(movieId) {
+    dispatch(Actions.getMovieDetails(movieId));
   },
   hideMovieDetails() {
     dispatch(Actions.hideMovieDetails());

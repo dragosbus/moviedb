@@ -10,7 +10,7 @@ import CastList from './Cast';
 class MovieDetails extends React.Component {
   state = {
     length: 8,
-    castToggled: false
+    castToggled: false,
   };
 
   noScroll = () => {
@@ -36,6 +36,7 @@ class MovieDetails extends React.Component {
 
   render() {
     let { movie, hideMovieDetails } = this.props;
+    
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
@@ -75,14 +76,14 @@ class MovieDetails extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  movie: state.movieDetails
+  movie: state.movieDetails,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       hideMovieDetails: Actions.hideMovieDetails,
-      addToFavorite: Actions.addToFavorite
+      addToFavorite: Actions.addToFavorite,
     },
     dispatch
   );

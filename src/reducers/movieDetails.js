@@ -7,7 +7,7 @@ export const movieDetailsReducer = (state = {
     case ActionTypes.GET_MOVIE_DETAILS:
       return Object.assign({}, {
         on: true
-      }, {...action.payload});
+      }, {id: action.payload});
     case ActionTypes.HIDE_MOVIE_DETAILS:
       return Object.assign({}, {
         on: false
