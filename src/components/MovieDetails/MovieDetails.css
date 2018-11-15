@@ -185,6 +185,10 @@ p.movie-details--overview {
 }
 
 @media (min-width: 960px) {
+  .movie-details {
+    justify-content: flex-start;
+    padding: 0rem 5rem;
+  }
   .details {
     width: 60%;
   }
