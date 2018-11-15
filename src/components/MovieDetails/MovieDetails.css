@@ -119,7 +119,7 @@ p.movie-details--overview {
   transition: opacity 0.5s ease-in;
   outline: none;
   text-align: center;
-  margin-top: -70%;
+  margin-top: -90%;
 }
 
 .play-trailer:hover {
