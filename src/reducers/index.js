@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     data: apiDataReducer,
     trailer: trailerApiReducer,
     weekTrending: weekTrendingReducer,
-    movieDetails: movieDetailsReducer,
+    movieDetailsId: movieDetailsReducer,
     autoCompletion: autoCompletionReducer,
     favorites: favoritesReducer,
 });

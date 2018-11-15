@@ -33,10 +33,6 @@ export const getMovieDetails = movieId => ({
     payload: movieId
 });
 
-export const hideMovieDetails = () => ({
-    type: ActionTypes.HIDE_MOVIE_DETAILS
-});
-
 export const autoCompletion = movies => ({
     type: ActionTypes.SET_AUTO_COMPLETION,
     payload: movies

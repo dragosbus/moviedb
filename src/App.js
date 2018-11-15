@@ -6,6 +6,7 @@ import Favorites from './components/Favorites/Favorites';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import FilterMenu from './components/FilterMenu/Menu';
 import './App.css';
+import { movie$ } from './observables/observables';
 
 import { connect } from 'react-redux';
 
@@ -15,7 +16,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movieDetailOn: false
+      movieDetailOn: false,
+      movieDetailsOn: false,
+      movieDetails: {}
     };
     this.showDetails = this.showDetails.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -38,14 +41,33 @@ class App extends Component {
     });
   }
 
+  subscription = movieId => {
+    movie$(movieId)
+      .subscribe(movie => {
+        this.setState(
+          { movieDetails: movie,
+            movieDetailsOn: !this.state.movieDetailsOn 
+          }
+        );
+      });
+  };
+
+  toggleMovieDetails = movieId => {
+    this.subscription(movieId);
+  };
+
+  componentWillUnmount() {
+    this.subscription().unsubscribe();
+  }
+
   render() {
-    let { movies, trailer, addToFavorite} = this.props;
+    let { movies, trailer, addToFavorite } = this.props;
     return (
       <div className="App">
         {/* <Link to="/favorites">Favorites</Link> */}
-        <FilterMenu/>
-        <WeekTrending toggleMovieDetails={this.props.toggleMovieDetails} />
-        <Favorites toggleMovieDetails={this.props.toggleMovieDetails}/>
+        <FilterMenu />
+        <WeekTrending toggleMovieDetails={this.toggleMovieDetails} />
+        <Favorites toggleMovieDetails={this.toggleMovieDetails} />
         <Movies movies={movies} showDetails={this.showDetails} addToFavorite={addToFavorite} />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}
@@ -56,7 +78,11 @@ class App extends Component {
           }
           closeModal={this.closeModal}
         />
-        <MovieDetails />
+        <MovieDetails
+          movieDetailsOn={this.state.movieDetailsOn}
+          hideMovieDetails={this.toggleMovieDetails}
+          movie={this.state.movieDetails}
+        />
       </div>
     );
   }
@@ -67,8 +93,8 @@ const mapStateToProps = state => ({
   movies: state.data,
   weekTrending: state.weekTrending,
   trailer: state.trailer,
-  movieDetails: state.movieDetails,
-  autoCompletion: state.autoCompletion,
+  movieDetailsId: state.movieDetails,
+  autoCompletion: state.autoCompletion
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -89,9 +115,6 @@ const mapDispatchToProps = dispatch => ({
   },
   toggleMovieDetails(movieId) {
     dispatch(Actions.getMovieDetails(movieId));
-  },
-  hideMovieDetails() {
-    dispatch(Actions.hideMovieDetails());
   }
 });
 

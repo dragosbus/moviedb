@@ -30,7 +30,7 @@ const movieDetailsSimilar$ = movieId => {
   return from(API.fetchSimilarMovies(movieId));
 };
 
-export const movie$ = (movieId, unsubscriber) => {
+export const movie$ = (movieId) => {
   return merge(
       movieDetails$(movieId),
       movieDetailsCast$(movieId),
@@ -66,6 +66,6 @@ export const movie$ = (movieId, unsubscriber) => {
           vote_count,
           genres
       })),
-      takeUntil(unsubscriber)
+      
   )
 };

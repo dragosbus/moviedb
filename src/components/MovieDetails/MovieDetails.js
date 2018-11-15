@@ -35,14 +35,14 @@ class MovieDetails extends React.Component {
   };
 
   render() {
-    let { movie, hideMovieDetails } = this.props;
+    let { movie, hideMovieDetails, movieDetailsOn } = this.props;
     
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
     };
 
-    return !movie.on ? (
+    return !movieDetailsOn ? (
       ''
     ) : (
       <div className="movie-details" style={styleMovieDetails}>
@@ -75,20 +75,15 @@ class MovieDetails extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  movie: state.movieDetails,
-});
-
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      hideMovieDetails: Actions.hideMovieDetails,
       addToFavorite: Actions.addToFavorite,
     },
     dispatch
   );
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(MovieDetails);
