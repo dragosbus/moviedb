@@ -48,7 +48,7 @@ class MovieDetails extends React.Component {
         <button className="movie-details--hide" onClick={hideMovieDetails}>
           X
         </button>
-        <button onClick={() => this.props.addToFavorite(movie)}>
+        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
           <HeartIcon />
         </button>
         <button className="play-trailer">
