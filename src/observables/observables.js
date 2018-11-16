@@ -85,10 +85,14 @@ export const movie$ = (movieId) => {
     movieDetailsCast$(movieId),
     movieDetailsSimilar$(movieId),
   ).pipe(
+    //merge all 3 observables, and reduce them to one object, with the new property similar which is result prop from similarMovies observable
     reduce((acc, x) => Object.assign(acc, x, {
       similar: x.results
     }), {}),
+    //return new object with selected props
     map(selectProps),
+    //return new observable which is the movie returned from previous map merged with the fetchTrailer observable
+    //I merged trailer here and not in the first because similarMovies and fetchTrailer observables has results propertie and like this I avoided that the similar and trailer prop from the new object returned are overwrited with prop results from the last observables from the first merge
     map(movie => merge( of (movie), fetchTrailer$(movieId))),
     concatAll(),
     reduce((acc, x) => Object.assign(acc, x, {
