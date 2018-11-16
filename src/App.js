@@ -6,46 +6,44 @@ import Favorites from './components/Favorites/Favorites';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import FilterMenu from './components/FilterMenu/Menu';
 import './App.css';
+import { movie$ } from './observables/observables';
 
 import { connect } from 'react-redux';
 
 import * as Actions from './actionCreators/actionCreators';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movieDetailOn: false
-    };
-    this.showDetails = this.showDetails.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
+
+  state = {
+    movieDetailsOn: false,
+    movieDetails: {}
+  };
 
   componentDidMount() {
     this.props.getWeekTrending();
-  }
+  };
 
-  showDetails(index) {
-    this.props.getTrailer(this.props.movies[index].id);
-    this.setState({
-      movieDetailOn: !this.state.movieDetailOn
+  subscription = movieId => {
+    return movie$(movieId).subscribe(movie => {
+      this.setState({ movieDetails: movie, movieDetailsOn: true });
     });
-  }
+  };
 
-  closeModal() {
-    this.setState({
-      movieDetailOn: !this.state.movieDetailOn
-    });
-  }
+  toggleMovieDetails = movieId => {
+    this.subscription(movieId);
+  };
+
+  unsubscribeMovieDetails = () => {
+    this.setState({ movieDetailsOn: false });
+  };
 
   render() {
-    let { movies, trailer, addToFavorite} = this.props;
+    let { movies, trailer, addToFavorite } = this.props;
     return (
       <div className="App">
-        {/* <Link to="/favorites">Favorites</Link> */}
-        <FilterMenu/>
-        <WeekTrending toggleMovieDetails={this.props.toggleMovieDetails} />
-        <Favorites toggleMovieDetails={this.props.toggleMovieDetails}/>
+        <FilterMenu />
+        <WeekTrending toggleMovieDetails={this.toggleMovieDetails} />
+        <Favorites toggleMovieDetails={this.toggleMovieDetails} />
         <Movies movies={movies} showDetails={this.showDetails} addToFavorite={addToFavorite} />
         <MovieDetail
           movieDetailOn={this.state.movieDetailOn}
@@ -56,10 +54,15 @@ class App extends Component {
           }
           closeModal={this.closeModal}
         />
-        <MovieDetails />
+        <MovieDetails
+          movieDetailsOn={this.state.movieDetailsOn}
+          hideMovieDetails={this.unsubscribeMovieDetails}
+          movie={this.state.movieDetails}
+          toggleMovieDetails={this.toggleMovieDetails}
+        />
       </div>
     );
-  }
+  };
 }
 
 const mapStateToProps = state => ({
@@ -67,8 +70,8 @@ const mapStateToProps = state => ({
   movies: state.data,
   weekTrending: state.weekTrending,
   trailer: state.trailer,
-  movieDetails: state.movieDetails,
-  autoCompletion: state.autoCompletion,
+  movieDetailsId: state.movieDetails,
+  autoCompletion: state.autoCompletion
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -78,20 +81,14 @@ const mapDispatchToProps = dispatch => ({
   fetchMovieSearched(term) {
     dispatch(Actions.fetchMovieSearched(term));
   },
-  getTrailer(movieId) {
-    dispatch(Actions.getTrailerMiddleware(movieId));
-  },
   addToFavorite(movie) {
     dispatch(Actions.addToFavorite(movie));
   },
   getWeekTrending() {
     dispatch(Actions.fetchWeekTrending());
   },
-  toggleMovieDetails(movie) {
-    dispatch(Actions.fetchMovieDetails(movie));
-  },
-  hideMovieDetails() {
-    dispatch(Actions.hideMovieDetails());
+  toggleMovieDetails(movieId) {
+    dispatch(Actions.getMovieDetails(movieId));
   }
 });
 

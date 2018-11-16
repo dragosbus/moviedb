@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   height: 10rem;
   padding: 0;
+  margin: 0 auto;
 }
 
 .filter-menu ul {
@@ -20,6 +21,7 @@
   align-items: center;
   flex-wrap: wrap;
   background: transparent;
+  margin: 0 auto;
 }
 
 .filter-menu ul li {
@@ -44,4 +46,18 @@
   display: none;
   width: 0;
   background: transparent;
+}
+
+@media (min-width:660px) {
+  .filter-menu ul {
+    width: 70%;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .filter-menu ul li {
+    width: 11rem;
+    padding: 2rem 0;
+    position: static;
+  }
 }

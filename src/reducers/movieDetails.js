@@ -1,17 +1,9 @@
 import * as ActionTypes from '../actionTypes/actionTypes';
 
-export const movieDetailsReducer = (state = {
-  on: false
-}, action) => {
+export const movieDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.GET_MOVIE_DETAILS:
-      return Object.assign({}, {
-        on: true
-      }, {...action.payload});
-    case ActionTypes.HIDE_MOVIE_DETAILS:
-      return Object.assign({}, {
-        on: false
-      })
+      return action.payload;
     default:
       return state;
   }

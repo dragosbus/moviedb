@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
-import {HeartIcon} from '../Icons/Icons';
+import { HeartIcon } from '../Icons/Icons';
 import CastList from './Cast';
+import SimilarMovies from './SimilarMovies';
 
 class MovieDetails extends React.Component {
   state = {
@@ -19,7 +20,7 @@ class MovieDetails extends React.Component {
 
   componentDidUpdate(prevProps) {
     //remove noScroll event when the movie details component is hided
-    if (prevProps.movie.on) {
+    if (prevProps.movieDetailsOn) {
       window.removeEventListener('scroll', this.noScroll);
     } else {
       window.addEventListener('scroll', this.noScroll);
@@ -35,20 +36,23 @@ class MovieDetails extends React.Component {
   };
 
   render() {
-    let { movie, hideMovieDetails } = this.props;
+    let { movie, hideMovieDetails, movieDetailsOn } = this.props;
+
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
     };
 
-    return !movie.on ? (
+    return !movieDetailsOn ? (
       ''
     ) : (
       <div className="movie-details" style={styleMovieDetails}>
         <button className="movie-details--hide" onClick={hideMovieDetails}>
           X
         </button>
-        <HeartIcon/>
+        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
+          <HeartIcon />
+        </button>
         <button className="play-trailer">
           <img src={playBtn} alt="play trailer" />
         </button>
@@ -63,28 +67,28 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            <CastList cast={this.props.movie.cast} castLength={this.state.length}/>
+            <CastList cast={this.props.movie.cast} castLength={this.state.length} />
             <button className="see-more-cast">See More</button>
           </div>
         </div>
+        <SimilarMovies
+          similarMovies={movie.similar}
+          toggleMovieDetails={this.props.toggleMovieDetails}
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  movie: state.movieDetails
-});
-
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      hideMovieDetails: Actions.hideMovieDetails
+      addToFavorite: Actions.addToFavorite
     },
     dispatch
   );
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(MovieDetails);
