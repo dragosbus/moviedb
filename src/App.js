@@ -81,9 +81,6 @@ const mapDispatchToProps = dispatch => ({
   fetchMovieSearched(term) {
     dispatch(Actions.fetchMovieSearched(term));
   },
-  getTrailer(movieId) {
-    dispatch(Actions.getTrailerMiddleware(movieId));
-  },
   addToFavorite(movie) {
     dispatch(Actions.addToFavorite(movie));
   },
