@@ -56,10 +56,6 @@ class App extends Component {
     this.subscription(movieId);
   };
 
-  componentWillUnmount() {
-    this.subscription().unsubscribe();
-  }
-
   render() {
     let { movies, trailer, addToFavorite } = this.props;
     return (

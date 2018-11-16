@@ -10,7 +10,7 @@ import CastList from './Cast';
 class MovieDetails extends React.Component {
   state = {
     length: 8,
-    castToggled: false,
+    castToggled: false
   };
 
   noScroll = () => {
@@ -19,7 +19,7 @@ class MovieDetails extends React.Component {
 
   componentDidUpdate(prevProps) {
     //remove noScroll event when the movie details component is hided
-    if (prevProps.movie.on) {
+    if (prevProps.movieDetailsOn) {
       window.removeEventListener('scroll', this.noScroll);
     } else {
       window.addEventListener('scroll', this.noScroll);
@@ -36,7 +36,7 @@ class MovieDetails extends React.Component {
 
   render() {
     let { movie, hideMovieDetails, movieDetailsOn } = this.props;
-    
+
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
       backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
@@ -78,7 +78,7 @@ class MovieDetails extends React.Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      addToFavorite: Actions.addToFavorite,
+      addToFavorite: Actions.addToFavorite
     },
     dispatch
   );
