@@ -34,7 +34,7 @@ export default class SlideMovies extends React.Component {
     return this.props.data.length > 0 ? (
       <Wrapper>
         <Title>{title}</Title>
-        <StyledLink to={path}>More</StyledLink>
+        {/* <StyledLink to={path}>More</StyledLink> */}
         <Movie data={data} toggleMovieDetails={toggleMovieDetails} />
       </Wrapper>
     ) : (

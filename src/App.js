@@ -13,54 +13,34 @@ import { connect } from 'react-redux';
 import * as Actions from './actionCreators/actionCreators';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movieDetailOn: false,
-      movieDetailsOn: false,
-      movieDetails: {}
-    };
-    this.showDetails = this.showDetails.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
+
+  state = {
+    movieDetailsOn: false,
+    movieDetails: {}
+  };
 
   componentDidMount() {
     this.props.getWeekTrending();
-  }
-
-  showDetails(index) {
-    this.props.getTrailer(this.props.movies[index].id);
-    this.setState({
-      movieDetailOn: !this.state.movieDetailOn
-    });
-  }
-
-  closeModal() {
-    this.setState({
-      movieDetailOn: !this.state.movieDetailOn
-    });
-  }
+  };
 
   subscription = movieId => {
-    movie$(movieId)
-      .subscribe(movie => {
-        this.setState(
-          { movieDetails: movie,
-            movieDetailsOn: !this.state.movieDetailsOn 
-          }
-        );
-      });
+    return movie$(movieId).subscribe(movie => {
+      this.setState({ movieDetails: movie, movieDetailsOn: true });
+    });
   };
 
   toggleMovieDetails = movieId => {
     this.subscription(movieId);
   };
 
+  unsubscribeMovieDetails = () => {
+    this.setState({ movieDetailsOn: false });
+  };
+
   render() {
     let { movies, trailer, addToFavorite } = this.props;
     return (
       <div className="App">
-        {/* <Link to="/favorites">Favorites</Link> */}
         <FilterMenu />
         <WeekTrending toggleMovieDetails={this.toggleMovieDetails} />
         <Favorites toggleMovieDetails={this.toggleMovieDetails} />
@@ -76,12 +56,13 @@ class App extends Component {
         />
         <MovieDetails
           movieDetailsOn={this.state.movieDetailsOn}
-          hideMovieDetails={this.toggleMovieDetails}
+          hideMovieDetails={this.unsubscribeMovieDetails}
           movie={this.state.movieDetails}
+          toggleMovieDetails={this.toggleMovieDetails}
         />
       </div>
     );
-  }
+  };
 }
 
 const mapStateToProps = state => ({

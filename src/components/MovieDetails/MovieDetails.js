@@ -6,6 +6,7 @@ import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
 import { HeartIcon } from '../Icons/Icons';
 import CastList from './Cast';
+import SimilarMovies from './SimilarMovies';
 
 class MovieDetails extends React.Component {
   state = {
@@ -69,6 +70,10 @@ class MovieDetails extends React.Component {
             <CastList cast={this.props.movie.cast} castLength={this.state.length} />
             <button className="see-more-cast">See More</button>
           </div>
+          <SimilarMovies
+          similarMovies={movie.similar}
+          toggleMovieDetails={this.props.toggleMovieDetails}
+        />
         </div>
       </div>
     );

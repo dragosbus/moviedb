@@ -30,7 +30,7 @@ const movieDetailsSimilar$ = movieId => {
   return from(API.fetchSimilarMovies(movieId));
 };
 
-export const movie$ = (movieId) => {
+export const movie$ = (movieId, target, eventType) => {
   return merge(
       movieDetails$(movieId),
       movieDetailsCast$(movieId),
@@ -66,6 +66,5 @@ export const movie$ = (movieId) => {
           vote_count,
           genres
       })),
-      
   )
 };
