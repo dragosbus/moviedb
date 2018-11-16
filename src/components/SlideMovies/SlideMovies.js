@@ -30,11 +30,11 @@ const StyledLink = styled(Link)`
 
 export default class SlideMovies extends React.Component {
   render() {
-    const { title, path, toggleMovieDetails, data } = this.props;
+    const { title, path, toggleMovieDetails, data, isMovieDetails } = this.props;
     return this.props.data.length > 0 ? (
       <Wrapper>
         <Title>{title}</Title>
-        {/* <StyledLink to={path}>More</StyledLink> */}
+        {isMovieDetails ? '' : <StyledLink to={path}>More</StyledLink>}
         <Movie data={data} toggleMovieDetails={toggleMovieDetails} />
       </Wrapper>
     ) : (

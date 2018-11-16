@@ -8,6 +8,7 @@ const SimilarMovies = props => {
       <SlideMovies
         data={props.similarMovies || []}
         toggleMovieDetails={props.toggleMovieDetails}
+        isMovieDetails={true}
       />
     </div>
   );
