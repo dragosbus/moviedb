@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  transition: padding-top 0.5s ease-in;
 }
 
 .movie-details .btn-add--favorite {
@@ -28,6 +29,7 @@
   width: 4rem;
   height: 4rem;
   cursor: pointer;
+  transition: padding-top 0.5s ease-in;
 }
 
 .btn-add--favorite svg {
@@ -37,7 +39,7 @@
 }
 
 .movie-details--hide {
-  position: fixed;
+  position: absolute;
   top: 2rem;
   left: 2rem;
   background: none;
@@ -46,6 +48,7 @@
   color: #fff;
   cursor: pointer;
   z-index: 1000000;
+  transition: padding-top 0.5s ease-in;
 }
 
 .details {
@@ -204,6 +207,7 @@ p.movie-details--overview {
     align-items: baseline;
     padding: 0rem 5rem;
   }
+
   .details {
     width: 50%;
   }
@@ -213,7 +217,8 @@ p.movie-details--overview {
   }
 
   .play-trailer {
-    top: -30%;
+    top: 0;
+    margin-top: 10%;
   }
 
   .similar-movies {
@@ -231,21 +236,20 @@ p.movie-details--overview {
 
 .video-container {
   position: absolute;
-  padding-bottom: 56.25%;
   padding-top: 35px;
   height: 0;
   overflow: hidden;
   margin-top: -13%;
-  top:0;
+  top: 0;
   width: 100%;
 }
 
 .video-container iframe {
   position: fixed;
-        top:-11px;
-        left: 0;
-        width: 100%;
-        height: 50%;
+  top: -11px;
+  left: 0;
+  width: 100%;
+  height: 46%;
 }
 
 @keyframes movie-details {

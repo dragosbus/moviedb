@@ -36,7 +36,7 @@ class App extends Component {
   };
 
   render() {
-    let { movies, trailer, addToFavorite } = this.props;
+    let { movies, addToFavorite } = this.props;
     console.log(this.state);
     return (
       <div className="App">

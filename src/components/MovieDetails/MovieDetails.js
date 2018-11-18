@@ -39,7 +39,6 @@ class MovieDetails extends React.Component {
 
   hideMovieDetails = () => {
     this.props.hideMovieDetails();
-    this.playTrailer();
   };
 
   playTrailer = () => {
@@ -51,17 +50,20 @@ class MovieDetails extends React.Component {
 
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`,
+      paddingTop: this.state.trailerPlayed ? '43%' : 0
     };
+
+    const styleTrailerOn = {paddingTop: this.state.trailerPlayed ? '55%' : 0};
 
     return !movieDetailsOn ? (
       ''
     ) : (
       <div className="movie-details" style={styleMovieDetails}>
-        <button className="movie-details--hide" onClick={this.hideMovieDetails}>
+        <button className="movie-details--hide" onClick={this.hideMovieDetails} style={styleTrailerOn}>
           X
         </button>
-        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
+        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)} style={styleTrailerOn}>
           <HeartIcon />
         </button>
         <button className="play-trailer" onClick={this.playTrailer}>

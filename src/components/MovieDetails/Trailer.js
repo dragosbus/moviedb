@@ -5,7 +5,7 @@ const Trailer = props => {
     <div className="video-container" style={{ display: props.trailerPlayed ? 'block' : 'none' }}>
       <iframe
         src={`https://www.youtube.com/embed/${props.trailer}?autoplay=1&controls=0&loop=1&showinfo=0`}
-        allow="autoplay; encrypted-media"
+        // allow="autoplay; encrypted-media"
         webkitallowfullscreen="true"
         mozallowfullscreen="true"
         allowFullScreen
