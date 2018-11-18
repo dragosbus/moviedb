@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Movies } from './components/Movies';
-import { MovieDetail } from './components/MovieDetail';
 import WeekTrending from './components/Trending/WeekTrending';
 import Favorites from './components/Favorites/Favorites';
 import MovieDetails from './components/MovieDetails/MovieDetails';
@@ -13,7 +12,6 @@ import { connect } from 'react-redux';
 import * as Actions from './actionCreators/actionCreators';
 
 class App extends Component {
-
   state = {
     movieDetailsOn: false,
     movieDetails: {}
@@ -21,7 +19,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.getWeekTrending();
-  };
+  }
 
   subscription = movieId => {
     return movie$(movieId).subscribe(movie => {
@@ -39,30 +37,23 @@ class App extends Component {
 
   render() {
     let { movies, trailer, addToFavorite } = this.props;
+    console.log(this.state);
     return (
       <div className="App">
         <FilterMenu />
         <WeekTrending toggleMovieDetails={this.toggleMovieDetails} />
         <Favorites toggleMovieDetails={this.toggleMovieDetails} />
         <Movies movies={movies} showDetails={this.showDetails} addToFavorite={addToFavorite} />
-        <MovieDetail
-          movieDetailOn={this.state.movieDetailOn}
-          trailer={
-            this.state.movieDetailOn
-              ? `https://www.youtube.com/embed/${trailer}?autoplay=1&controls=0&loop=1&showinfo=0`
-              : ''
-          }
-          closeModal={this.closeModal}
-        />
         <MovieDetails
           movieDetailsOn={this.state.movieDetailsOn}
           hideMovieDetails={this.unsubscribeMovieDetails}
           movie={this.state.movieDetails}
           toggleMovieDetails={this.toggleMovieDetails}
+          trailer={this.state.movieDetails.trailer ? this.state.movieDetails.trailer[0].key : ''}
         />
       </div>
     );
-  };
+  }
 }
 
 const mapStateToProps = state => ({

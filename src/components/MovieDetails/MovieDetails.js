@@ -7,10 +7,12 @@ import playBtn from '../../play-button.svg';
 import { HeartIcon } from '../Icons/Icons';
 import CastList from './Cast';
 import SimilarMovies from './SimilarMovies';
+import Trailer from './Trailer';
 
 class MovieDetails extends React.Component {
   state = {
     length: 8,
+    trailerPlayed: false,
     castToggled: false
   };
 
@@ -35,8 +37,17 @@ class MovieDetails extends React.Component {
     return `${hour} h ${minutes} min`;
   };
 
+  hideMovieDetails = () => {
+    this.props.hideMovieDetails();
+    this.playTrailer();
+  };
+
+  playTrailer = () => {
+    this.setState({ trailerPlayed: !this.state.trailerPlayed });
+  };
+
   render() {
-    let { movie, hideMovieDetails, movieDetailsOn } = this.props;
+    let { movie, movieDetailsOn } = this.props;
 
     const poster = movie ? movie.poster_path : '';
     const styleMovieDetails = {
@@ -47,13 +58,13 @@ class MovieDetails extends React.Component {
       ''
     ) : (
       <div className="movie-details" style={styleMovieDetails}>
-        <button className="movie-details--hide" onClick={hideMovieDetails}>
+        <button className="movie-details--hide" onClick={this.hideMovieDetails}>
           X
         </button>
         <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
           <HeartIcon />
         </button>
-        <button className="play-trailer">
+        <button className="play-trailer" onClick={this.playTrailer}>
           <img src={playBtn} alt="play trailer" />
         </button>
         <div className="details">
@@ -71,10 +82,8 @@ class MovieDetails extends React.Component {
             <button className="see-more-cast">See More</button>
           </div>
         </div>
-        <SimilarMovies
-          similarMovies={movie.similar}
-          toggleMovieDetails={this.props.toggleMovieDetails}
-        />
+        <SimilarMovies similarMovies={movie.similar} toggleMovieDetails={this.props.toggleMovieDetails} />
+        <Trailer trailer={this.props.trailer} trailerPlayed={this.state.trailerPlayed} />
       </div>
     );
   }

@@ -85,8 +85,7 @@ export const movie$ = (movieId) => {
     movieDetailsCast$(movieId),
     movieDetailsSimilar$(movieId),
   ).pipe(
-    tap(x=>console.log(x)),
-    //merge all 3 observables, and reduce them to one object, with the new property similar which is result prop from similarMovies observable
+    //concat all 3 observables, and reduce them to one object, with the new property similar which is result prop from similarMovies observable
     reduce((acc, x) => Object.assign(acc, x, {
       similar: x.results
     }), {}),
