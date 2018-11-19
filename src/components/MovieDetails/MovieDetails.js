@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import './MovieDetails.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,25 +8,46 @@ import playBtn from '../../play-button.svg';
 import { HeartIcon } from '../Icons/Icons';
 import CastList from './Cast';
 import SimilarMovies from './SimilarMovies';
+import Trailer from './Trailer';
+
+const MovieDetailsStyle = styled.div`
+  display: ${props => (props.show ? 'flex' : 'none')};
+  background: ${props =>
+    props.poster
+      ? `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${
+          props.poster
+        })`
+      : ''};
+  padding-top: ${props => (props.trailerPlayed ? '70%' : 0)};
+      
+  @media(min-width:660px) {
+    padding-top: ${props => (props.trailerPlayed ? '45%' : 0)};
+  }
+
+  @media(min-width:960px) {
+    padding-top: ${props => (props.trailerPlayed ? '35%' : 0)};
+  }
+`;
 
 class MovieDetails extends React.Component {
   state = {
     length: 8,
+    trailerPlayed: false,
     castToggled: false
   };
 
-  noScroll = () => {
-    window.scrollTo(0, 0);
-  };
-
-  componentDidUpdate(prevProps) {
+  componentWillUpdate(prevProps) {
     //remove noScroll event when the movie details component is hided
-    if (prevProps.movieDetailsOn) {
+    if (!prevProps.movieDetailsOn) {
       window.removeEventListener('scroll', this.noScroll);
     } else {
       window.addEventListener('scroll', this.noScroll);
     }
   }
+
+  noScroll = () => {
+    window.scrollTo(0, 0);
+  };
 
   calcRuntime = runtime => {
     let runtimeInt = parseInt(runtime, 10);
@@ -35,25 +57,36 @@ class MovieDetails extends React.Component {
     return `${hour} h ${minutes} min`;
   };
 
+  hideMovieDetails = () => {
+    this.props.hideMovieDetails();
+    if (this.state.trailerPlayed) {
+      this.playTrailer();
+    }
+  };
+
+  playTrailer = () => {
+    this.setState({ trailerPlayed: !this.state.trailerPlayed });
+  };
+
   render() {
-    let { movie, hideMovieDetails, movieDetailsOn } = this.props;
+    let { movie, movieDetailsOn } = this.props;
 
     const poster = movie ? movie.poster_path : '';
-    const styleMovieDetails = {
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`
-    };
 
-    return !movieDetailsOn ? (
-      ''
-    ) : (
-      <div className="movie-details" style={styleMovieDetails}>
-        <button className="movie-details--hide" onClick={hideMovieDetails}>
+    return (
+      <MovieDetailsStyle
+        className="movie-details"
+        poster={poster}
+        trailerPlayed={this.state.trailerPlayed}
+        show={movieDetailsOn}
+      >
+        <button className="movie-details--hide" onClick={this.hideMovieDetails}>
           X
         </button>
         <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
           <HeartIcon />
         </button>
-        <button className="play-trailer">
+        <button className="play-trailer" onClick={this.playTrailer}>
           <img src={playBtn} alt="play trailer" />
         </button>
         <div className="details">
@@ -71,11 +104,9 @@ class MovieDetails extends React.Component {
             <button className="see-more-cast">See More</button>
           </div>
         </div>
-        <SimilarMovies
-          similarMovies={movie.similar}
-          toggleMovieDetails={this.props.toggleMovieDetails}
-        />
-      </div>
+        <SimilarMovies similarMovies={movie.similar} toggleMovieDetails={this.props.toggleMovieDetails} />
+        <Trailer trailer={this.props.trailer} trailerPlayed={this.state.trailerPlayed} />
+      </MovieDetailsStyle>
     );
   }
 }
