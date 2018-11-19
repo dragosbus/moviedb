@@ -201,9 +201,9 @@ p.movie-details--overview {
 
 @media (min-width: 960px) {
   .movie-details {
-    justify-content: space-between;
     align-items: baseline;
-    padding: 0rem 5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 
   .details {
@@ -216,7 +216,7 @@ p.movie-details--overview {
 
   .play-trailer {
     top: 0;
-    margin-top: 10%;
+    margin-top: 30%;
   }
 
   .similar-movies {
@@ -245,6 +245,7 @@ p.movie-details--overview {
   position: fixed;
   top: -11px;
   left: 0;
+  right: 0;
   width: 100%;
   height: 45%;
 }

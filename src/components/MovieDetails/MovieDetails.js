@@ -18,7 +18,15 @@ const MovieDetailsStyle = styled.div`
           props.poster
         })`
       : ''};
-  padding-top: ${props => (props.trailerPlayed ? '75%' : 0)};
+  padding-top: ${props => (props.trailerPlayed ? '70%' : 0)};
+      
+  @media(min-width:660px) {
+    padding-top: ${props => (props.trailerPlayed ? '45%' : 0)};
+  }
+
+  @media(min-width:960px) {
+    padding-top: ${props => (props.trailerPlayed ? '35%' : 0)};
+  }
 `;
 
 class MovieDetails extends React.Component {
@@ -26,10 +34,6 @@ class MovieDetails extends React.Component {
     length: 8,
     trailerPlayed: false,
     castToggled: false
-  };
-
-  noScroll = () => {
-    window.scrollTo(0, 0);
   };
 
   componentWillUpdate(prevProps) {
@@ -40,6 +44,10 @@ class MovieDetails extends React.Component {
       window.addEventListener('scroll', this.noScroll);
     }
   }
+
+  noScroll = () => {
+    window.scrollTo(0, 0);
+  };
 
   calcRuntime = runtime => {
     let runtimeInt = parseInt(runtime, 10);

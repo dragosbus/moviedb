@@ -58,6 +58,12 @@
   .filter-menu ul li {
     width: 11rem;
     padding: 2rem 0;
+    /* position: static; */
+  }
+}
+
+@media (min-width:960px) {
+  .filter-menu ul li {
     position: static;
   }
 }

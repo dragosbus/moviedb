@@ -37,7 +37,7 @@ class App extends Component {
 
   render() {
     let { movies, addToFavorite } = this.props;
-    console.log(this.state);
+    
     return (
       <div className="App">
         <FilterMenu />
