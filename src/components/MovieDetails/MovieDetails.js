@@ -11,7 +11,7 @@ import SimilarMovies from './SimilarMovies';
 import Trailer from './Trailer';
 
 const MovieDetailsStyle = styled.div`
-  display: ${props => props.show ? 'flex' : 'none'};
+  display: ${props => (props.show ? 'flex' : 'none')};
   background: ${props =>
     props.poster
       ? `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${
@@ -32,9 +32,9 @@ class MovieDetails extends React.Component {
     window.scrollTo(0, 0);
   };
 
-  componentDidUpdate(prevProps) {
+  componentWillUpdate(prevProps) {
     //remove noScroll event when the movie details component is hided
-    if (prevProps.movieDetailsOn) {
+    if (!prevProps.movieDetailsOn) {
       window.removeEventListener('scroll', this.noScroll);
     } else {
       window.addEventListener('scroll', this.noScroll);
@@ -60,19 +60,18 @@ class MovieDetails extends React.Component {
     this.setState({ trailerPlayed: !this.state.trailerPlayed });
   };
 
-  componentWillUnmount() {
-    console.log('unmounted')
-  }
-
   render() {
     let { movie, movieDetailsOn } = this.props;
 
     const poster = movie ? movie.poster_path : '';
 
-    return !movieDetailsOn ? (
-      ''
-    ) : (
-      <MovieDetailsStyle className="movie-details" poster={poster} trailerPlayed={this.state.trailerPlayed} show={movieDetailsOn}>
+    return (
+      <MovieDetailsStyle
+        className="movie-details"
+        poster={poster}
+        trailerPlayed={this.state.trailerPlayed}
+        show={movieDetailsOn}
+      >
         <button className="movie-details--hide" onClick={this.hideMovieDetails}>
           X
         </button>
@@ -93,21 +92,12 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            <CastList 
-              cast={this.props.movie.cast} 
-              castLength={this.state.length} 
-            />
+            <CastList cast={this.props.movie.cast} castLength={this.state.length} />
             <button className="see-more-cast">See More</button>
           </div>
         </div>
-        <SimilarMovies 
-          similarMovies={movie.similar} 
-          toggleMovieDetails={this.props.toggleMovieDetails} 
-        />
-        <Trailer 
-          trailer={this.props.trailer} 
-          trailerPlayed={this.state.trailerPlayed} 
-        />
+        <SimilarMovies similarMovies={movie.similar} toggleMovieDetails={this.props.toggleMovieDetails} />
+        <Trailer trailer={this.props.trailer} trailerPlayed={this.state.trailerPlayed} />
       </MovieDetailsStyle>
     );
   }

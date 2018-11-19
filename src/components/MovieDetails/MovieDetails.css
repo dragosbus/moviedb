@@ -12,7 +12,6 @@
   background-position: center center;
   background-size: 100% 100%;
   overflow: scroll;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
