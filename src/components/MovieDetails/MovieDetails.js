@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import './MovieDetails.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +9,17 @@ import { HeartIcon } from '../Icons/Icons';
 import CastList from './Cast';
 import SimilarMovies from './SimilarMovies';
 import Trailer from './Trailer';
+
+const MovieDetailsStyle = styled.div`
+  display: ${props => props.show ? 'flex' : 'none'};
+  background: ${props =>
+    props.poster
+      ? `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${
+          props.poster
+        })`
+      : ''};
+  padding-top: ${props => (props.trailerPlayed ? '75%' : 0)};
+`;
 
 class MovieDetails extends React.Component {
   state = {
@@ -39,31 +51,32 @@ class MovieDetails extends React.Component {
 
   hideMovieDetails = () => {
     this.props.hideMovieDetails();
+    if (this.state.trailerPlayed) {
+      this.playTrailer();
+    }
   };
 
   playTrailer = () => {
     this.setState({ trailerPlayed: !this.state.trailerPlayed });
   };
 
+  componentWillUnmount() {
+    console.log('unmounted')
+  }
+
   render() {
     let { movie, movieDetailsOn } = this.props;
 
     const poster = movie ? movie.poster_path : '';
-    const styleMovieDetails = {
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.94) 45%), url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster})`,
-      paddingTop: this.state.trailerPlayed ? '43%' : 0
-    };
-
-    const styleTrailerOn = {paddingTop: this.state.trailerPlayed ? '55%' : 0};
 
     return !movieDetailsOn ? (
       ''
     ) : (
-      <div className="movie-details" style={styleMovieDetails}>
-        <button className="movie-details--hide" onClick={this.hideMovieDetails} style={styleTrailerOn}>
+      <MovieDetailsStyle className="movie-details" poster={poster} trailerPlayed={this.state.trailerPlayed} show={movieDetailsOn}>
+        <button className="movie-details--hide" onClick={this.hideMovieDetails}>
           X
         </button>
-        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)} style={styleTrailerOn}>
+        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
           <HeartIcon />
         </button>
         <button className="play-trailer" onClick={this.playTrailer}>
@@ -80,13 +93,22 @@ class MovieDetails extends React.Component {
           <p>{movie.vote_count} rating</p>
           <div className="cast">
             <h4>Stars</h4>
-            <CastList cast={this.props.movie.cast} castLength={this.state.length} />
+            <CastList 
+              cast={this.props.movie.cast} 
+              castLength={this.state.length} 
+            />
             <button className="see-more-cast">See More</button>
           </div>
         </div>
-        <SimilarMovies similarMovies={movie.similar} toggleMovieDetails={this.props.toggleMovieDetails} />
-        <Trailer trailer={this.props.trailer} trailerPlayed={this.state.trailerPlayed} />
-      </div>
+        <SimilarMovies 
+          similarMovies={movie.similar} 
+          toggleMovieDetails={this.props.toggleMovieDetails} 
+        />
+        <Trailer 
+          trailer={this.props.trailer} 
+          trailerPlayed={this.state.trailerPlayed} 
+        />
+      </MovieDetailsStyle>
     );
   }
 }
