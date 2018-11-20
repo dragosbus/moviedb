@@ -4,7 +4,7 @@ import Form from './Form/Form';
 import AutoCompletion from './AutoCompletionForm/AutoCompletion';
 import logo from '../logo.svg';
 
-export class Header extends Component {
+export default class Header extends Component {
   render() {
     return (
       <header className="main-header">

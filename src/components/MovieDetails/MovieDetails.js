@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
 import { HeartIcon } from '../Icons/Icons';
-import CastList from './Cast/Cast';
 import SimilarMovies from './SimilarMovies/SimilarMovies';
 import Trailer from './Trailer/Trailer';
+import Details from './Details/Details';
 
 const MovieDetailsStyle = styled.div`
   display: ${props => (props.show ? 'flex' : 'none')};
@@ -89,21 +89,7 @@ class MovieDetails extends React.Component {
         <button className="play-trailer" onClick={this.playTrailer}>
           <img src={playBtn} alt="play trailer" />
         </button>
-        <div className="details">
-          <p>
-            <span>{movie.release_date}</span>
-            <span>{movie.genres ? movie.genres[0].name : ''}</span>
-          </p>
-          <h4>{movie.original_title}</h4>
-          <p>{this.calcRuntime(movie.runtime)}</p>
-          <p className="movie-details--overview">{movie.overview}</p>
-          <p>{movie.vote_count} rating</p>
-          <div className="cast">
-            <h4>Stars</h4>
-            <CastList cast={this.props.movie.cast} castLength={this.state.length} />
-            <button className="see-more-cast">See More</button>
-          </div>
-        </div>
+        <Details movie={movie} calcRuntime={this.calcRuntime}/>
         <SimilarMovies similarMovies={movie.similar} toggleMovieDetails={this.props.toggleMovieDetails} />
         <Trailer trailer={this.props.trailer} trailerPlayed={this.state.trailerPlayed} />
       </MovieDetailsStyle>
