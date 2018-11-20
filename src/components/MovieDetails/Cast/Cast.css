@@ -1,0 +1,80 @@
+.cast {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cast h4 {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.cast span {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  animation: fade-cast 1.5s ease-in-out;
+}
+
+.cast span::after {
+  content: '|';
+  margin: 0 1rem;
+}
+
+.see-more-cast {
+  background: none;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.cast-list {
+  overflow-y: hidden;
+  width: 100%;
+  list-style: none;
+  height: 20rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: transparent;
+}
+
+.cast-list li {
+  position: absolute;
+  width: 10rem;
+  box-shadow: 0.5rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
+  transition: all 0.35s ease-in;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cast-list li p {
+  position: absolute;
+  bottom: -1rem;
+  background: rgba(20, 20, 20, 0.745);
+  padding: 0.5rem 0;
+  border-radius: 0 0 1.5rem 1.5rem;
+  width: 10rem;
+  text-align: center;
+}
+
+.cast-list li img {
+  width: 10rem;
+  border-radius: 1.5rem;
+}
+
+@media (min-width: 960px) {
+  .cast-list {
+    width: 100%;
+  }
+}

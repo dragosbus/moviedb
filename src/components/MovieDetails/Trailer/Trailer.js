@@ -1,4 +1,5 @@
 import React from 'react';
+import './Trailer.css';
 
 const Trailer = props => {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
-import SlideMovies from '../SlideMovies/SlideMovies';
+import SlideMovies from '../../SlideMovies/SlideMovies';
+import './SimilarMovies.css';
 
 const SimilarMovies = props => {
   return(

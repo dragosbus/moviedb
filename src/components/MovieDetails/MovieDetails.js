@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
 import playBtn from '../../play-button.svg';
 import { HeartIcon } from '../Icons/Icons';
-import CastList from './Cast';
-import SimilarMovies from './SimilarMovies';
-import Trailer from './Trailer';
+import CastList from './Cast/Cast';
+import SimilarMovies from './SimilarMovies/SimilarMovies';
+import Trailer from './Trailer/Trailer';
 
 const MovieDetailsStyle = styled.div`
   display: ${props => (props.show ? 'flex' : 'none')};
