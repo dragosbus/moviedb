@@ -18,14 +18,10 @@ const MovieDetailsStyle = styled.div`
           props.poster
         })`
       : ''};
-  padding-top: ${props => (props.trailerPlayed ? '70%' : 0)};
+  padding-top: ${props => (props.trailerPlayed ? '45vh' : 0)};
       
   @media(min-width:660px) {
-    padding-top: ${props => (props.trailerPlayed ? '45%' : 0)};
-  }
-
-  @media(min-width:960px) {
-    padding-top: ${props => (props.trailerPlayed ? '35%' : 0)};
+    padding-top: ${props => (props.trailerPlayed ? '55%' : 0)};
   }
 `;
 
@@ -72,7 +68,7 @@ class MovieDetails extends React.Component {
     let { movie, movieDetailsOn } = this.props;
 
     const poster = movie ? movie.poster_path : '';
-
+    let styledButtonOnTrailerOn = {paddingTop: this.state.trailerPlayed ? '45vh' : 0};
     return (
       <MovieDetailsStyle
         className="movie-details"
@@ -80,10 +76,10 @@ class MovieDetails extends React.Component {
         trailerPlayed={this.state.trailerPlayed}
         show={movieDetailsOn}
       >
-        <button className="movie-details--hide" onClick={this.hideMovieDetails}>
+        <button style={styledButtonOnTrailerOn} className="movie-details--hide" onClick={this.hideMovieDetails}>
           X
         </button>
-        <button className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
+        <button style={styledButtonOnTrailerOn} className="btn-add--favorite" onClick={() => this.props.addToFavorite(movie)}>
           <HeartIcon />
         </button>
         <button className="play-trailer" onClick={this.playTrailer}>
