@@ -1,5 +1,6 @@
 import React from 'react';
 import { Movie } from './Movie';
+import {ChangePosBtns} from './ChangePosBtns';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -36,6 +37,7 @@ export default class SlideMovies extends React.Component {
         <Title>{title}</Title>
         {isMovieDetails ? '' : <StyledLink to={path}>More</StyledLink>}
         <Movie data={data} toggleMovieDetails={toggleMovieDetails} />
+        <ChangePosBtns/>
       </Wrapper>
     ) : (
       ''

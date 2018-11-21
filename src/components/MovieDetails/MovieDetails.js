@@ -4,7 +4,7 @@ import './MovieDetails.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actionCreators/actionCreators';
-import playBtn from '../../play-button.svg';
+import playBtn from '../../assets/play-button.svg';
 import { HeartIcon } from '../Icons/Icons';
 import SimilarMovies from './SimilarMovies/SimilarMovies';
 import Trailer from './Trailer/Trailer';
