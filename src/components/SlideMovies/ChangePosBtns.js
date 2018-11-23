@@ -4,10 +4,10 @@ import './Style.css';
 export const ChangePosBtns = props => {
   return(
     <div className="change-pos">
-      <button>
+      <button onClick={props.toLeft}>
         Prev
       </button>
-      <button>
+      <button onClick={props.toRight}>
         Next
       </button>
     </div>

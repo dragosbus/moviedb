@@ -1,5 +1,5 @@
 .change-pos {
-  background: rgb(248, 246, 246);
+  background: rgba(248, 246, 246, 0);
   position: absolute;
   height: 15rem;
   width: 100%;

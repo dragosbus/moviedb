@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
   0%{
@@ -23,6 +23,7 @@ const ListStyled = styled.ul`
   align-items: center;
   flex-wrap: wrap;
   background: transparent;
+  scroll-behavior: smooth;
 
   ::-webkit-scrollbar {
     display: none;
@@ -30,7 +31,7 @@ const ListStyled = styled.ul`
     background: transparent;
   }
 
-  @media(min-width:960px) {
+  @media (min-width: 960px) {
     margin: 0 auto;
     width: 60%;
   }
@@ -55,24 +56,31 @@ const ImageStyled = styled.img`
   border-radius: 1.5rem;
 `;
 
-export const Movie = props => {
-  return (
-    <ListStyled>
-      {props.data.slice(0, 10).map((movie, i) => {
-        return (
-          <ElementListStyled
-            className="movie-trending"
-            key={i}
-            style={{ left: `${i * 120}px` }}
-            onClick={() => props.toggleMovieDetails(movie.id)}
-          >
-            <ImageStyled
-              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`}
-              alt={movie.original_title}
-            />
-          </ElementListStyled>
-        );
-      })}
-    </ListStyled>
-  );
-};
+export class Movie extends React.Component {
+  ulRef = React.createRef();
+
+  render() {
+    if (this.ulRef.current) {
+      this.ulRef.current.scrollBy(this.props.scrollBy, 0);
+    }
+    return (
+      <ListStyled ref={this.ulRef}>
+        {this.props.data.slice(0, 10).map((movie, i) => {
+          return (
+            <ElementListStyled
+              className="movie-trending"
+              key={i}
+              style={{ left: `${i * 120}px` }}
+              onClick={() => this.props.toggleMovieDetails(movie.id)}
+            >
+              <ImageStyled
+                src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`}
+                alt={movie.original_title}
+              />
+            </ElementListStyled>
+          );
+        })}
+      </ListStyled>
+    );
+  }
+}
