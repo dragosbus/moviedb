@@ -1,27 +1,18 @@
 .change-pos {
-  background: rgba(248, 246, 246, 0);
   position: absolute;
-  height: 15rem;
-  width: 100%;
-  margin-top: 2rem;
-  justify-content: space-between;
-  align-items: center;
-  display: none;
-}
-
-.change-pos button {
   padding: 2rem;
   background: none;
   border: none;
   cursor: pointer;
+  display: none;
 }
 
-.change-pos button:last-of-type {
+.change-pos:last-of-type {
   right: 2rem;
 }
 
 @media (min-width: 960px) {
   .change-pos {
-    display: flex;
+    display: block;
   }
 }

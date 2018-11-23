@@ -1,6 +1,6 @@
 import React from 'react';
 import { Movie } from './Movie';
-import { ChangePosBtns } from './ChangePosBtns';
+import { ChangePosBtn } from './ChangePosBtn';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -35,11 +35,11 @@ export default class SlideMovies extends React.Component {
   };
 
   toLeft = () => {
-    this.setState({scrollBy: -563})
+    this.setState({ scrollBy: -563 });
   };
 
   toRight = () => {
-    this.setState({scrollBy: 563})
+    this.setState({ scrollBy: 563 });
   };
 
   render() {
@@ -49,7 +49,8 @@ export default class SlideMovies extends React.Component {
         <Title>{title}</Title>
         {isMovieDetails ? '' : <StyledLink to={path}>More</StyledLink>}
         <Movie data={data} toggleMovieDetails={toggleMovieDetails} scrollBy={this.state.scrollBy} />
-        <ChangePosBtns toLeft={this.toLeft} toRight={this.toRight} />
+        <ChangePosBtn direction="Left" toDirection={this.toLeft} />
+        <ChangePosBtn direction="Right" toDirection={this.toRight} />
       </Wrapper>
     ) : (
       ''
